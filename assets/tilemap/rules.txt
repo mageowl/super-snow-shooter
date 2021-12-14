@@ -1,0 +1,2 @@
+rules/edge.tmx
+rules/9splice.tmx

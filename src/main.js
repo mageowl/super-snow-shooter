@@ -1,13 +1,22 @@
+import GameScene from "./classes/scene/GameScene.js";
+
 const game = new Phaser.Game({
 	type: Phaser.AUTO,
 	scale: {
 		mode: Phaser.Scale.RESIZE
 	},
 	physics: {
-		default: "arcade"
+		default: "arcade",
+		arcade: {
+			gravity: { y: 200 }
+		}
 	},
 	render: {
-		pixelArt: true
+		pixelArt: true,
+		antialias: false
 	},
-	scene: null
+	loader: {
+		baseURL: "assets"
+	},
+	scene: GameScene
 });
