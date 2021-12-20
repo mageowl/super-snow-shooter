@@ -10,20 +10,25 @@ export default class GameScene extends UpdatedScene {
 		);
 
 		this.load.image("ground", "sprites/tileset/ground.png");
+
+		this.load.tilemapTiledJSON("map", "tilemap/icy_peaks.json");
 	}
 
 	create() {
 		this.anims.createFromAseprite("player1");
 
-		const player = new Player(this, 0, 0, 1, true);
-		this.physics.add.collider(
-			[
-				this.physics.add.staticImage(0, 100, "ground"),
-				this.physics.add.staticImage(48, 100, "ground")
-			],
-			player
-		);
+		const map = this.add.tilemap("map");
+		map.addTilesetImage("Snow", "ground");
+		const ground = map
+			.createLayer("ground", "Snow")
+			.setCollisionByProperty({ collide: true });
 
-		this.cameras.main.setZoom(3).startFollow(player);
+		const player = new Player(this, 0, 0, 1, true);
+		this.physics.add.collider(player, ground);
+
+		this.cameras.main
+			.setZoom(3)
+			.startFollow(player)
+			.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 	}
 }

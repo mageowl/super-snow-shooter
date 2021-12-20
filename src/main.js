@@ -3,12 +3,14 @@ import GameScene from "./classes/scene/GameScene.js";
 const game = new Phaser.Game({
 	type: Phaser.AUTO,
 	scale: {
-		mode: Phaser.Scale.RESIZE
+		mode: Phaser.Scale.FIT,
+		width: 960,
+		height: 528
 	},
 	physics: {
 		default: "arcade",
 		arcade: {
-			gravity: { y: 200 }
+			gravity: { y: 400 }
 		}
 	},
 	render: {

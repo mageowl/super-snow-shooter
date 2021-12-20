@@ -1,2 +1,3 @@
-rules/edge.tmx
-rules/9splice.tmx
+rules/snow/edge.tmx
+rules/snow/9splice.tmx
+rules/snow/corners_inner.tmx	
