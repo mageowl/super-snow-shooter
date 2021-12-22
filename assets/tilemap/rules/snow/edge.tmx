@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="7" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="1">
+ <tileset firstgid="1" source="../../tilesets/automap.tsx"/>
+ <tileset firstgid="9" source="../../tilesets/snow.tsx"/>
+ <layer id="1" name="regions" width="7" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,3,3,0,3,3,0,
+0,3,3,0,3,3,0,
+0,3,3,0,3,3,0,
+0,0,0,0,0,0,0,
+0,3,3,0,3,3,0,
+0,3,3,0,3,3,0,
+0,3,3,0,3,3,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="input_prototype" width="7" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,1,1,0,1,1,0,
+0,1,1,0,1,1,0,
+0,0,0,0,0,0,0,
+0,1,1,0,1,1,0,
+0,1,1,0,1,1,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="5" name="inputnot_prototype" width="7" height="11" tintcolor="#cb2d2b">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,1,1,0,1,1,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,1,1,0,1,1,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="input_perimeter" width="7" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,2,0,0,0,2,0,
+0,2,0,0,0,2,0,
+0,2,0,0,0,2,0,
+0,0,0,0,0,0,0,
+0,2,0,0,0,2,0,
+0,2,0,0,0,2,0,
+0,2,0,0,0,2,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="output_snow" width="7" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,10,0,0,0,10,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,26,0,0,0,26,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,
+0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

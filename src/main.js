@@ -5,7 +5,8 @@ const game = new Phaser.Game({
 	scale: {
 		mode: Phaser.Scale.FIT,
 		width: 960,
-		height: 528
+		height: 528,
+		autoCenter: true
 	},
 	physics: {
 		default: "arcade",
@@ -14,9 +15,9 @@ const game = new Phaser.Game({
 		}
 	},
 	render: {
-		pixelArt: true,
-		antialias: false
+		pixelArt: true
 	},
+	antialias: false,
 	loader: {
 		baseURL: "assets"
 	},
