@@ -39,8 +39,7 @@ io.on("connection", (socket) => {
 			};
 			currentGame = id;
 
-			socket.emit("packet.server", games[id]);
-			console.log("Game Joined: ", id);
+			socket.emit("packet.join", games[id]);
 		}
 	});
 

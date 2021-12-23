@@ -37,4 +37,9 @@ export async function connect(url) {
 	socket.on("game-created", (id) => {
 		alert("Game ID: " + id);
 	});
+
+	socket.on("packet.join", (data) => {
+		lastPacket = data;
+		alert("Connected to game.");
+	});
 }
