@@ -2,6 +2,7 @@ import Snowball from "./Snowball.js";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
 	static SPEED = 140;
+	static CROUCH_SPEED = 35;
 	static JUMP_HEIGHT = 250;
 	static FIRE_VELOCITY = 300;
 	static SLIDE_SPEED = 50;
@@ -16,12 +17,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	sliding = false;
 	launch = 0;
 	crouch = false;
+	snowballs = [];
 
 	constructor(scene, x, y, skin, local = false) {
 		super(scene, x, y, `player${skin}`);
 
 		scene.add.existing(this);
-		scene.physics.add.existing(this);
+		if (local) scene.physics.add.existing(this);
 		scene.updateObj(this);
 
 		if (local) {
@@ -31,7 +33,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		}
 		this.textureName = `player${skin}`;
 
-		this.setSize(9, 16).setOffset(4, 8);
+		if (local) this.setSize(9, 16).setOffset(4, 8);
 	}
 
 	update() {
@@ -43,9 +45,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 			if (this.launch <= 0 && !this.crouch)
 				this.setVelocityX(Player.SPEED * direction);
-			else if (this.launch > 0) {
-				this.launch--;
-			}
+			else if (this.launch > 0) this.launch--;
+			else if (this.crouch) this.setVelocityX(Player.CROUCH_SPEED * direction);
 
 			this.crouch = input.SHIFT;
 
@@ -69,17 +70,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			if (input.S) {
 				if (this.recoil === 0) {
 					this.recoil = 10;
-					new Snowball(this.scene, this.x, this.y + 4, [
-						Player.FIRE_VELOCITY * -(this.flipX * 2 - 1),
-						this.body.velocity.y / 10
-					]);
+					this.snowballs.push(
+						new Snowball(
+							this.scene,
+							this.x,
+							this.y + 4,
+							[
+								Player.FIRE_VELOCITY * -(this.flipX * 2 - 1),
+								this.body.velocity.y / 10
+							],
+							this
+						)
+					);
 				}
 			} else if (this.recoil > 0) {
 				this.recoil--;
 			}
 
 			if (this.body.onFloor()) {
-				if ((input.D || input.A) && !this.crouch) {
+				if (input.D || input.A) {
 					this.anim = "walk";
 				} else if (this.recoil > 8) {
 					this.anim = "shoot";
@@ -103,5 +112,46 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		this.play(`${this.textureName}.${this.anim}`, true);
 		this.setFlipX(this.flip);
+	}
+
+	get frameData() {
+		const { anim, flip, x, y, textureName, recoil, sliding } = this;
+		const snowballs = this.snowballs.map((obj) => ({ x: obj.x, y: obj.y }));
+
+		return {
+			anim,
+			flip,
+			x,
+			y,
+			textureName,
+			recoil,
+			sliding,
+			snowballs
+		};
+	}
+
+	set frameData(data) {
+		const { anim, flip, x, y, recoil, sliding, snowballs } = data;
+		this.anim = anim;
+		this.flip = flip;
+		this.x = x;
+		this.y = y;
+		this.recoil = recoil;
+		this.sliding = sliding;
+
+		this.#updateSnowballs(snowballs);
+		snowballs.forEach(({ x, y }, i) => {
+			this.snowballs[i].x = x;
+			this.snowballs[i].y = y;
+		});
+	}
+
+	#updateSnowballs(snowballs) {
+		if (snowballs.length > this.snowballs.length) {
+			const sb = snowballs[this.snowballs.length];
+			this.snowballs.push(new Snowball(this.scene, sb.x, sb.y));
+		} else if (snowballs.length < this.snowballs.length) {
+			this.snowballs.splice(-1)[0].destroy();
+		}
 	}
 }

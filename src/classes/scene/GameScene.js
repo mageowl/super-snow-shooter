@@ -1,3 +1,4 @@
+import sendPacket, { getPlayerID } from "../../io.js";
 import Player from "../objects/Player.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 
@@ -6,6 +7,7 @@ export default class GameScene extends UpdatedScene {
 		snow: null,
 		ice: null
 	};
+	players = {};
 
 	preload() {
 		this.load.aseprite(
@@ -36,12 +38,36 @@ export default class GameScene extends UpdatedScene {
 			.createLayer("ice", "Ice")
 			.setCollisionByProperty({ collide: true });
 
-		const player = new Player(this, 0, 0, 1, true);
-		this.physics.add.collider(player, [this.tilemap.snow, this.tilemap.ice]);
+		this.player = new Player(this, 0, 0, 1, true);
+		this.physics.add.collider(this.player, [
+			this.tilemap.snow,
+			this.tilemap.ice
+		]);
 
 		this.cameras.main
 			.setZoom(3)
-			.startFollow(player)
+			.startFollow(this.player)
 			.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+	}
+
+	update() {
+		super.update();
+
+		const gameData = sendPacket(this.player.frameData);
+		const pid = getPlayerID();
+
+		if (gameData) {
+			Object.entries(gameData.players).forEach(([id, data]) => {
+				console.log(id, pid);
+				if (id !== pid) {
+					if (this.players[id] == null) {
+						this.players[id] = new Player(this, data.x, data.y, 1, false);
+					}
+
+					this.players[id].frameData = data;
+					console.log(data.x, data.y);
+				}
+			});
+		}
 	}
 }

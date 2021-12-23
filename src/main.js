@@ -1,4 +1,7 @@
 import GameScene from "./classes/scene/GameScene.js";
+import { connect } from "./io.js";
+
+const SERVER = "localhost:3000";
 
 const game = new Phaser.Game({
 	type: Phaser.AUTO,
@@ -23,3 +26,5 @@ const game = new Phaser.Game({
 	},
 	scene: GameScene
 });
+
+connect(SERVER);

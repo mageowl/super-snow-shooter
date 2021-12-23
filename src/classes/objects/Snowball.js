@@ -1,26 +1,23 @@
 export default class Snowball extends Phaser.Physics.Arcade.Sprite {
-	constructor(scene, x, y, [xv, yv]) {
+	constructor(scene, x, y, v = null, parent = null) {
 		super(scene, x, y, "snowball");
 
 		scene.add.existing(this);
-		scene.physics.add.existing(this);
-		scene.updateObj(this);
-		scene.physics.add.collider(this, scene.tilemap.snow, this.hit);
+		if (v != null) {
+			scene.physics.add.existing(this);
+			scene.updateObj(this);
+			scene.physics.add.collider(this, scene.tilemap.snow, this.hit);
 
-		this.setVelocity(xv, yv).body.setAllowGravity(false).setGravityY(100);
-		this.timer = 100;
+			this.setVelocity(...v)
+				.body.setAllowGravity(false)
+				.setGravityY(100);
+			this.timer = 100;
+		}
+
+		this.player = parent;
 	}
 
 	update() {
-		this.setAngle(
-			Phaser.Math.Angle.Between(
-				0,
-				0,
-				this.body.velocity.x,
-				this.body.velocity.y
-			)
-		);
-
 		this.timer--;
 		if (this.timer === 85) {
 			this.body.setAllowGravity(true);
@@ -32,5 +29,6 @@ export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 	hit = () => {
 		this.scene.removeUpdate(this);
 		this.destroy();
+		this.player.snowballs.splice(this.player.snowballs.indexOf(this), 1);
 	};
 }
