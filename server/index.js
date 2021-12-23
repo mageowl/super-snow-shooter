@@ -3,7 +3,7 @@ import { Server } from "socket.io";
 import express from "express";
 
 const PORT = process.env.PORT ?? 3000;
-const debug = process.env.DEVELOP;
+const debug = process.env.DEVELOP === "true";
 
 const app = express();
 const httpServer = createServer(app);
