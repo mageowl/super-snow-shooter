@@ -12,7 +12,7 @@ export function getPlayerID() {
 
 export async function connect(url) {
 	const scriptEl = document.createElement("script");
-	scriptEl.src = `https://${url}/socket.io/socket.io.js`;
+	scriptEl.src = `${url}/socket.io/socket.io.js`;
 	document.body.append(scriptEl);
 
 	await new Promise((resolve) => {

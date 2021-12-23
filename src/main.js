@@ -1,7 +1,10 @@
 import GameScene from "./classes/scene/GameScene.js";
 import { connect } from "./io.js";
 
-const SERVER = "super-snow-shooter.herokuapp.com";
+const SERVER =
+	location.hostname === "seattleowl"
+		? "https://super-snow-shooter.herokuapp.com"
+		: "http://localhost:3000";
 
 const game = new Phaser.Game({
 	type: Phaser.AUTO,

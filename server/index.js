@@ -78,6 +78,10 @@ io.on("connection", (socket) => {
 		if (debug) console.log("player disconnect...");
 		if (currentGame) {
 			delete games[currentGame].players[socket.id];
+			if (Object.keys(games[currentGame].players).length === 0) {
+				delete games[currentGame];
+				console.log("CLEAN UP!", games);
+			}
 		}
 	});
 });
