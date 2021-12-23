@@ -2,7 +2,7 @@ import GameScene from "./classes/scene/GameScene.js";
 import { connect } from "./io.js";
 
 const SERVER =
-	location.hostname === "seattleowl"
+	location.hostname === "seattleowl.com"
 		? "https://super-snow-shooter.herokuapp.com"
 		: "http://localhost:3000";
 
