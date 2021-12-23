@@ -1,7 +1,7 @@
 import GameScene from "./classes/scene/GameScene.js";
 import { connect } from "./io.js";
 
-const SERVER = "https://super-snow-shooter.herokuapp.com";
+const SERVER = "super-snow-shooter.herokuapp.com";
 
 const game = new Phaser.Game({
 	type: Phaser.AUTO,
