@@ -58,14 +58,12 @@ export default class GameScene extends UpdatedScene {
 
 		if (gameData) {
 			Object.entries(gameData.players).forEach(([id, data]) => {
-				console.log(id, pid);
 				if (id !== pid) {
 					if (this.players[id] == null) {
 						this.players[id] = new Player(this, data.x, data.y, 1, false);
 					}
 
 					this.players[id].frameData = data;
-					console.log(data.x, data.y);
 				}
 			});
 		}

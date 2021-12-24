@@ -31,7 +31,6 @@ export async function connect(url) {
 
 	socket.on("packet.server", (data) => {
 		lastPacket = data;
-		console.log("new data");
 	});
 
 	socket.on("game-created", (id) => {
