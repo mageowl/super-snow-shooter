@@ -1,3 +1,5 @@
+import { hitPlayer } from "../../io.js";
+
 export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, v = null, parent = null) {
 		super(scene, x, y, "snowball");
@@ -24,6 +26,23 @@ export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 		} else if (this.timer === 0) {
 			this.hit();
 		}
+
+		console.log(
+			Object.values(this.scene.players).filter(
+				({ x, y }) => Phaser.Math.Distance.Between(this.x, this.y, x, y) < 32
+			)
+		);
+		Object.entries(this.scene.players)
+			.filter(
+				([_id, { x, y }]) =>
+					Phaser.Math.Distance.Between(this.x, this.y, x, y) < 32
+			)
+			.forEach(([id, player]) => {
+				if (player.getBounds().contains(this.x, this.y)) {
+					hitPlayer(id);
+					this.hit();
+				}
+			});
 	}
 
 	hit = () => {

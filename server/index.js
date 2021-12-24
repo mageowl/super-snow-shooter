@@ -7,6 +7,7 @@ const debug = process.env.DEVELOP === "true";
 
 const app = express();
 const httpServer = createServer(app);
+/** @type {Server} */
 const io = new Server(httpServer, {
 	cors: {
 		origin: debug ? "http://localhost:5500" : "https://seattleowl.com",
@@ -70,6 +71,16 @@ io.on("connection", (socket) => {
 		if (currentGame) {
 			games[currentGame].players[socket.id] = data;
 			socket.emit("packet.server", games[currentGame]);
+		}
+	});
+
+	socket.on("hit-player", (id) => {
+		if (
+			currentGame &&
+			Object.keys(games[currentGame].players).indexOf(id) !== -1
+		) {
+			io.sockets.sockets.get(id).emit("die");
+			io.emit("player-leave", id);
 		}
 	});
 

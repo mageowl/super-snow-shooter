@@ -1,4 +1,4 @@
-import sendPacket, { getPlayerID } from "../../io.js";
+import sendPacket, { getRemovedPlayers, getPlayerID } from "../../io.js";
 import Player from "../objects/Player.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 
@@ -55,12 +55,18 @@ export default class GameScene extends UpdatedScene {
 
 		const gameData = sendPacket(this.player.frameData);
 		const pid = getPlayerID();
+		const removedPlayers = getRemovedPlayers();
 
 		if (gameData) {
 			Object.entries(gameData.players).forEach(([id, data]) => {
 				if (id !== pid) {
 					if (this.players[id] == null) {
 						this.players[id] = new Player(this, data.x, data.y, 1, false);
+					} else if (removedPlayers.includes(id)) {
+						this.players[id].destroy();
+						this.removeUpdate(this.players[id]);
+						delete this.players[id];
+						return;
 					}
 
 					this.players[id].frameData = data;

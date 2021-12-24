@@ -1,5 +1,6 @@
 let lastPacket = null;
 let socket = null;
+let left = [];
 
 export default function sendPacket(data) {
 	socket.emit("packet.client", data);
@@ -8,6 +9,16 @@ export default function sendPacket(data) {
 
 export function getPlayerID() {
 	return socket.id;
+}
+
+export function getRemovedPlayers() {
+	const data = left;
+	left = [];
+	return data;
+}
+
+export function hitPlayer(playerID) {
+	socket.emit("hit-player", playerID);
 }
 
 export async function connect(url) {
@@ -40,5 +51,14 @@ export async function connect(url) {
 	socket.on("packet.join", (data) => {
 		lastPacket = data;
 		alert("Connected to game.");
+	});
+
+	socket.on("die", () => {
+		console.log("u ded");
+		open("about:blank", "_self").close();
+	});
+
+	socket.on("player-leave", (id) => {
+		left.push(id);
 	});
 }
