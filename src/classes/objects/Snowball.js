@@ -27,22 +27,18 @@ export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 			this.hit();
 		}
 
-		console.log(
-			Object.values(this.scene.players).filter(
-				({ x, y }) => Phaser.Math.Distance.Between(this.x, this.y, x, y) < 32
-			)
-		);
-		Object.entries(this.scene.players)
-			.filter(
-				([_id, { x, y }]) =>
-					Phaser.Math.Distance.Between(this.x, this.y, x, y) < 32
-			)
-			.forEach(([id, player]) => {
-				if (player.getBounds().contains(this.x, this.y)) {
-					hitPlayer(id);
-					this.hit();
-				}
-			});
+		if (this.scene)
+			Object.entries(this.scene.players)
+				.filter(
+					([_id, { x, y }]) =>
+						Phaser.Math.Distance.Between(this.x, this.y, x, y) < 32
+				)
+				.forEach(([id, player]) => {
+					if (player.getBounds().contains(this.x, this.y)) {
+						hitPlayer(id);
+						this.hit();
+					}
+				});
 	}
 
 	hit = () => {

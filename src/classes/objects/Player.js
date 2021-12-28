@@ -55,15 +55,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			}
 
 			this.sliding =
-				this.body.velocity.y >= 0 &&
-				((this.body.blocked.right && input.D) ||
-					(this.body.blocked.left && input.A));
+				(this.body.blocked.right && input.D) ||
+				(this.body.blocked.left && input.A);
 
 			if (this.sliding) {
-				this.setVelocityY(Player.SLIDE_SPEED);
+				if (this.body.velocity.y > 0) this.setVelocityY(Player.SLIDE_SPEED);
 				if (input.W) {
 					this.setVelocity(Player.SPEED * -direction, -Player.JUMP_HEIGHT);
-					this.launch = 30;
+					this.launch = 20;
 				}
 			}
 
@@ -76,7 +75,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 							this.x,
 							this.y + 4,
 							[
-								Player.FIRE_VELOCITY * -(this.flipX * 2 - 1),
+								Player.FIRE_VELOCITY *
+									-((this.sliding ? !this.flipX : this.flipX) * 2 - 1),
 								this.body.velocity.y / 10
 							],
 							this
@@ -88,21 +88,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			}
 
 			if (this.body.onFloor()) {
-				if (input.D || input.A) {
-					this.anim = "walk";
-				} else if (this.recoil > 8) {
-					this.anim = "shoot";
-				} else {
-					this.anim = "idle";
-				}
+				if (input.D || input.A) this.anim = "walk";
+				else if (this.recoil > 8) this.anim = "shoot";
+				else this.anim = "idle";
 			} else {
-				if (this.sliding) {
-					this.anim = "slide";
-				} else if (this.body.velocity.y > 0) {
-					this.anim = "fall";
-				} else {
-					this.anim = "jump";
-				}
+				if (this.body.velocity.y > 0) {
+					if (this.sliding) this.anim = "slide";
+					else this.anim = "fall";
+				} else this.anim = "jump";
 			}
 
 			this.flip = { "-1": true, 0: this.flip, 1: false }[
@@ -115,7 +108,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	get frameData() {
-		const { anim, flip, x, y, textureName, recoil, sliding } = this;
+		const { anim, flip, x, y, textureName } = this;
 		const snowballs = this.snowballs.map((obj) => ({ x: obj.x, y: obj.y }));
 
 		return {
@@ -124,20 +117,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			x,
 			y,
 			textureName,
-			recoil,
-			sliding,
 			snowballs
 		};
 	}
 
 	set frameData(data) {
-		const { anim, flip, x, y, recoil, sliding, snowballs } = data;
+		const { anim, flip, x, y, snowballs } = data;
 		this.anim = anim;
 		this.flip = flip;
 		this.x = x;
 		this.y = y;
-		this.recoil = recoil;
-		this.sliding = sliding;
 
 		this.#updateSnowballs(snowballs);
 		snowballs.forEach(({ x, y }, i) => {

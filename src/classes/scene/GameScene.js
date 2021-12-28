@@ -47,7 +47,7 @@ export default class GameScene extends UpdatedScene {
 		this.cameras.main
 			.setZoom(3)
 			.startFollow(this.player)
-			.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+			.setBounds(16, 16, map.widthInPixels - 32, map.heightInPixels - 32);
 	}
 
 	update() {
