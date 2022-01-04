@@ -68,10 +68,10 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("packet.client", (data) => {
-		if (currentGame) {
+		if (currentGame && games[currentGame].players[socket.id]) {
 			games[currentGame].players[socket.id] = data;
 			socket.emit("packet.server", games[currentGame]);
-		}
+		} else if (currentGame && debug) console.log("oooohh!");
 	});
 
 	socket.on("hit-player", (id) => {
@@ -79,8 +79,11 @@ io.on("connection", (socket) => {
 			currentGame &&
 			Object.keys(games[currentGame].players).indexOf(id) !== -1
 		) {
-			io.sockets.sockets.get(id).emit("die");
-			io.emit("player-leave", id);
+			delete games[currentGame].players[id];
+			console.log(games[currentGame].players);
+			const dead = io.sockets.sockets.get(id);
+			dead.emit("die");
+			dead.broadcast.emit("player-leave", id);
 		}
 	});
 
@@ -90,7 +93,9 @@ io.on("connection", (socket) => {
 			delete games[currentGame].players[socket.id];
 			if (Object.keys(games[currentGame].players).length === 0) {
 				delete games[currentGame];
-				console.log("CLEAN UP!", games);
+				if (debug) console.log("CLEAN UP!", games);
+			} else {
+				socket.broadcast.emit("player-leave", id);
 			}
 		}
 	});

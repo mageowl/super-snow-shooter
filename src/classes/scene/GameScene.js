@@ -16,7 +16,7 @@ export default class GameScene extends UpdatedScene {
 			"sprites/player/player1.json"
 		);
 
-		this.load.image("snowball", "sprites/other/snowball.png");
+		this.load.image("snowball", "sprites/player/snowball.png");
 
 		this.load.image("snow", "sprites/tileset/ground.png");
 		this.load.image("ice", "sprites/tileset/ice.png");
@@ -56,21 +56,25 @@ export default class GameScene extends UpdatedScene {
 		const gameData = sendPacket(this.player.frameData);
 		const pid = getPlayerID();
 		const removedPlayers = getRemovedPlayers();
+		if (removedPlayers.length > 0) console.log("ppl who ded: ", removedPlayers);
 
 		if (gameData) {
 			Object.entries(gameData.players).forEach(([id, data]) => {
 				if (id !== pid) {
 					if (this.players[id] == null) {
 						this.players[id] = new Player(this, data.x, data.y, 1, false);
-					} else if (removedPlayers.includes(id)) {
-						this.players[id].destroy();
-						this.removeUpdate(this.players[id]);
-						delete this.players[id];
-						return;
+						console.log("friend!");
 					}
 
 					this.players[id].frameData = data;
 				}
+			});
+
+			removedPlayers.forEach((id) => {
+				console.log("bye bye ENEMY");
+				this.players[id].destroy();
+				this.removeUpdate(this.players[id]);
+				delete this.players[id];
 			});
 		}
 	}

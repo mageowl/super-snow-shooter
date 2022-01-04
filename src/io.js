@@ -13,6 +13,7 @@ export function getPlayerID() {
 
 export function getRemovedPlayers() {
 	const data = left;
+	if (left.length) console.log("DESTRUCTION!");
 	left = [];
 	return data;
 }
@@ -21,7 +22,7 @@ export function hitPlayer(playerID) {
 	socket.emit("hit-player", playerID);
 }
 
-export async function connect(url) {
+export async function connect(url, { join, name, data }) {
 	const scriptEl = document.createElement("script");
 	scriptEl.src = `${url}/socket.io/socket.io.js`;
 	document.body.append(scriptEl);
@@ -34,11 +35,7 @@ export async function connect(url) {
 
 	socket = io(url);
 
-	if (confirm("Make new game?")) {
-		socket.emit("host-game", {}, prompt("Name?"));
-	} else {
-		socket.emit("join-game", prompt("Game ID?"), prompt("Name?"));
-	}
+	socket.emit(join ? "join-game" : "host-game", data, name);
 
 	socket.on("packet.server", (data) => {
 		lastPacket = data;
@@ -60,5 +57,6 @@ export async function connect(url) {
 
 	socket.on("player-leave", (id) => {
 		left.push(id);
+		console.log("someone go byebye");
 	});
 }
