@@ -1,3 +1,9 @@
+// get server
+const server =
+	location.hostname === "seattleowl.com"
+		? "https://super-snow-shooter.herokuapp.com"
+		: "http://localhost:3000";
+
 let lastPacket = null;
 let socket = null;
 let left = [];
@@ -22,9 +28,9 @@ export function hitPlayer(playerID) {
 	socket.emit("hit-player", playerID);
 }
 
-export async function connect(url, { join, name, data }) {
+export async function connect({ join, name, data }) {
 	const scriptEl = document.createElement("script");
-	scriptEl.src = `${url}/socket.io/socket.io.js`;
+	scriptEl.src = `${server}/socket.io/socket.io.js`;
 	document.body.append(scriptEl);
 
 	await new Promise((resolve) => {
@@ -33,7 +39,7 @@ export async function connect(url, { join, name, data }) {
 		});
 	});
 
-	socket = io(url);
+	socket = io(server);
 
 	socket.emit(join ? "join-game" : "host-game", data, name);
 

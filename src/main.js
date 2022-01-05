@@ -1,12 +1,6 @@
 import GameScene from "./classes/scene/GameScene.js";
-import MainMenu from "./classes/scene/MainMenu.js";
-import { connect } from "./io.js";
-
-// get server
-const SERVER =
-	location.hostname === "seattleowl.com"
-		? "https://super-snow-shooter.herokuapp.com"
-		: "http://localhost:3000";
+import JoinMenu from "./classes/scene/menu/JoinMenu.js";
+import MainMenu from "./classes/scene/menu/MainMenu.js";
 
 const game = new Phaser.Game({
 	type: Phaser.AUTO,
@@ -29,5 +23,5 @@ const game = new Phaser.Game({
 	loader: {
 		baseURL: "assets"
 	},
-	scene: [MainMenu, GameScene]
+	scene: [MainMenu, JoinMenu, GameScene]
 });
