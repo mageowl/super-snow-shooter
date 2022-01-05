@@ -1,5 +1,5 @@
-import UpdatedScene from "/src/classes/template/scenes/UpdatedScene.js";
-import { connect } from "/src/io.js";
+import UpdatedScene from "../../template/scenes/UpdatedScene.js";
+import { connect } from "../../../io.js";
 
 export default class JoinMenu extends UpdatedScene {
 	frame = 0;
