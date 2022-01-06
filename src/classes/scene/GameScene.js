@@ -5,7 +5,8 @@ import UpdatedScene from "../template/scenes/UpdatedScene.js";
 export default class GameScene extends UpdatedScene {
 	tilemap = {
 		snow: null,
-		ice: null
+		ice: null,
+		background: null
 	};
 	players = {};
 
@@ -20,6 +21,7 @@ export default class GameScene extends UpdatedScene {
 
 		this.load.image("snow", "sprites/tileset/ground.png");
 		this.load.image("ice", "sprites/tileset/ice.png");
+		this.load.image("snowfort", "sprites/tileset/snowfort.png");
 
 		this.load.tilemapTiledJSON("map", "tilemap/icy_peaks.json");
 
@@ -36,6 +38,7 @@ export default class GameScene extends UpdatedScene {
 
 		const map = this.add.tilemap("map");
 		map.addTilesetImage("Snow", "snow");
+		map.addTilesetImage("Snowfort", "snowfort");
 		map.addTilesetImage("Ice", "ice");
 
 		this.tilemap.snow = map
@@ -44,12 +47,27 @@ export default class GameScene extends UpdatedScene {
 		this.tilemap.ice = map
 			.createLayer("ice", "Ice")
 			.setCollisionByProperty({ collide: true });
+		this.tilemap.background = map
+			.createLayer("background", ["Snowfort"])
+			.setCollisionByProperty({ collide: true });
+
+		const spawns = [];
+		map.getObjectLayer("objects").objects.forEach(({ x, y, type }) => {
+			switch (type) {
+				case "player-spawn": {
+					spawns.push({ x, y });
+				}
+			}
+		});
 
 		this.player = new Player(this, 0, 0, 1, true);
 		this.physics.add.collider(this.player, [
 			this.tilemap.snow,
 			this.tilemap.ice
 		]);
+
+		const spawn = spawns[Math.floor(Math.random() * spawns.length)];
+		this.player.setPosition(spawn.x, spawn.y);
 
 		this.cameras.main
 			.setZoom(3)

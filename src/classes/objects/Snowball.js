@@ -42,7 +42,7 @@ export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	hit = () => {
-		this.scene.removeUpdate(this);
+		this.scene?.removeUpdate?.(this);
 		this.destroy();
 		this.player.snowballs.splice(this.player.snowballs.indexOf(this), 1);
 	};

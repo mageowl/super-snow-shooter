@@ -1,4 +1,4 @@
-import { connect, hostGame } from "../../../io.js";
+import { connect, hostGame, isConnected } from "../../../io.js";
 import UpdatedScene from "../../template/scenes/UpdatedScene.js";
 
 export default class MainMenu extends UpdatedScene {
@@ -6,6 +6,7 @@ export default class MainMenu extends UpdatedScene {
 
 	/** @type {Phaser.GameObjects.Container} */
 	title = null;
+	serverWarning = null;
 	buttons = {
 		container: null,
 		play: null,
@@ -30,6 +31,7 @@ export default class MainMenu extends UpdatedScene {
 			"font/zepto-red-small.png",
 			"font/zepto-red-small.xml"
 		);
+		this.load.image("server-down", "sprites/menu/server-down.png");
 	}
 
 	create() {
@@ -39,6 +41,12 @@ export default class MainMenu extends UpdatedScene {
 		]);
 
 		this.add.image(0, 0, "background-main").setOrigin(0).setDepth(-1);
+
+		if (!isConnected())
+			this.serverWarning = this.add
+				.image(281, 475, "server-down")
+				.setOrigin(0, 0.5)
+				.setScale(3);
 
 		const buttonContainer = this.add.container(0, 264);
 		this.addButton("PLAY", 0, buttonContainer, 0x63c74d).on("pointerdown", () =>
@@ -62,6 +70,11 @@ export default class MainMenu extends UpdatedScene {
 			480,
 			Math.sin(this.frame * (Math.PI / 180) * 2) * 10 + 100
 		);
+
+		if (isConnected() && this.serverWarning) {
+			this.serverWarning.destroy();
+			this.serverWarning = null;
+		}
 	}
 
 	addButton(text, index, container, color = 0xffffff) {

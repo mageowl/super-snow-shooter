@@ -38,7 +38,8 @@ io.on("connection", (socket) => {
 				name: "",
 				x: 0,
 				y: 0,
-				snowballs: []
+				snowballs: [],
+				gnotems: 3
 			};
 
 			currentGame = id;
@@ -74,7 +75,10 @@ io.on("connection", (socket) => {
 
 	socket.on("packet.client", (data) => {
 		if (currentGame && games[currentGame]?.players?.[socket.id]) {
-			games[currentGame].players[socket.id] = data;
+			games[currentGame].players[socket.id] = {
+				...games[currentGame].players[socket.id],
+				...data
+			};
 			socket.emit("packet.server", games[currentGame]);
 		}
 	});

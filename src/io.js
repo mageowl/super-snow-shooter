@@ -1,3 +1,5 @@
+import { ERROR } from "../errorCodes.mjs";
+
 // get server
 const server =
 	location.hostname === "seattleowl.com"
@@ -11,23 +13,39 @@ let joinCallbacks = [];
 let hostCallbacks = [];
 
 export default function sendPacket(data) {
-	socket.emit("packet.client", data);
-	return lastPacket;
+	if (socket != null) {
+		socket.emit("packet.client", data);
+		return lastPacket;
+	} else {
+		return ERROR.NOT_CONNECTED;
+	}
 }
 
 export function getPlayerID() {
-	return socket.id;
+	if (socket != null) {
+		return socket.id;
+	} else {
+		return ERROR.NOT_CONNECTED;
+	}
 }
 
 export function getRemovedPlayers() {
-	const data = left;
-	if (left.length) console.log("DESTRUCTION!");
-	left = [];
-	return data;
+	if (socket != null) {
+		const data = left;
+		if (left.length) console.log("DESTRUCTION!");
+		left = [];
+		return data;
+	} else {
+		return ERROR.NOT_CONNECTED;
+	}
 }
 
 export function hitPlayer(playerID) {
-	socket.emit("hit-player", playerID);
+	if (socket != null) {
+		socket.emit("hit-player", playerID);
+	} else {
+		return ERROR.NOT_CONNECTED;
+	}
 }
 
 export async function connect() {
@@ -76,22 +94,38 @@ export async function connect() {
 	});
 }
 
-export function joinGame(code) {
-	socket.emit("join-game", code);
+export function isConnected() {
+	return socket != null;
+}
 
-	return new Promise((resolve, reject) => {
-		joinCallbacks.push({ resolve, reject });
-	});
+export function joinGame(code) {
+	if (socket != null) {
+		socket.emit("join-game", code);
+
+		return new Promise((resolve, reject) => {
+			joinCallbacks.push({ resolve, reject });
+		});
+	} else {
+		return Promise.reject(ERROR.NOT_CONNECTED);
+	}
 }
 
 export function setName(name) {
-	socket.emit("set-name", name);
+	if (socket != null) {
+		socket.emit("set-name", name);
+	} else {
+		return ERROR.NOT_CONNECTED;
+	}
 }
 
 export function hostGame() {
-	socket.emit("host-game", {});
+	if (socket != null) {
+		socket.emit("host-game", {});
 
-	return new Promise((resolve, reject) => {
-		hostCallbacks.push({ resolve, reject });
-	});
+		return new Promise((resolve, reject) => {
+			hostCallbacks.push({ resolve, reject });
+		});
+	} else {
+		return Promise.reject(ERROR.NOT_CONNECTED);
+	}
 }

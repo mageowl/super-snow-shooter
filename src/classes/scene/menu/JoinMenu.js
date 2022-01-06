@@ -1,5 +1,6 @@
 import UpdatedScene from "../../template/scenes/UpdatedScene.js";
-import { connect, joinGame, setName } from "../../../io.js";
+import { connect, isConnected, joinGame, setName } from "../../../io.js";
+import { ERROR } from "../../../../errorCodes.mjs";
 
 export default class JoinMenu extends UpdatedScene {
 	frame = 0;
@@ -38,10 +39,18 @@ export default class JoinMenu extends UpdatedScene {
 							.setDropShadow(1, 1, 0x222222);
 					})
 					.catch((code) => {
-						this.inputTitle
-							.setText("Game not found.")
-							.setFont("zepto-red-small", 16)
-							.setDropShadow(1, 1, 0x9e2835);
+						if (code === ERROR.GAME_NOT_FOUND) {
+							this.inputTitle
+								.setText("Game not found.")
+								.setFont("zepto-red-small", 16)
+								.setDropShadow(1, 1, 0x9e2835);
+						} else {
+							this.inputTitle
+								.setText("Connection refused.")
+								.setFont("zepto-red-small", 16)
+								.setDropShadow(1, 1, 0x9e2835);
+						}
+
 						setTimeout(() => {
 							this.code = "";
 							this.canType = true;
@@ -56,7 +65,24 @@ export default class JoinMenu extends UpdatedScene {
 				setName(this.name);
 				this.scene.start("GameScene");
 			} else if (this.code === "solo") {
-				this.scene.start("GameScene");
+				if (isConnected()) {
+					this.scene.start("GameScene");
+				} else {
+					this.canType = false;
+					this.inputTitle
+						.setText("Not connected.")
+						.setFont("zepto-red-small", 16)
+						.setDropShadow(1, 1, 0x9e2835);
+					setTimeout(() => {
+						this.code = "";
+						this.canType = true;
+						this.inputText.setText("____");
+						this.inputTitle
+							.setText("Enter game ID:")
+							.setFont("zepto-small", 16)
+							.setDropShadow(1, 1, 0x222222);
+					}, 1000);
+				}
 			}
 		});
 		this.addButton("BACK", 1, buttonContainer, 0xe43b44, true).on(
