@@ -74,7 +74,6 @@ export async function connect() {
 
 	socket.on("join.resolve", (data) => {
 		lastPacket = data;
-		alert("Connected to game.");
 		joinCallbacks.forEach(({ resolve }) => resolve());
 		joinCallbacks = [];
 	});
