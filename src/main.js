@@ -1,6 +1,7 @@
 import GameScene from "./classes/scene/GameScene.js";
 import JoinMenu from "./classes/scene/menu/JoinMenu.js";
 import MainMenu from "./classes/scene/menu/MainMenu.js";
+import { connect } from "./io.js";
 
 const game = new Phaser.Game({
 	type: Phaser.AUTO,
@@ -25,3 +26,5 @@ const game = new Phaser.Game({
 	},
 	scene: [MainMenu, JoinMenu, GameScene]
 });
+
+connect();

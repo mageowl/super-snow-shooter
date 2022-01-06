@@ -1,52 +1,78 @@
 import UpdatedScene from "../../template/scenes/UpdatedScene.js";
-import { connect } from "../../../io.js";
+import { connect, joinGame } from "../../../io.js";
 
 export default class JoinMenu extends UpdatedScene {
 	frame = 0;
 
 	/** @type {Phaser.GameObjects.BitmapText} */
-	codeInput = null;
+	inputText = null;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	inputTitle = null;
 	code = "";
+	canType = true;
 
 	create() {
 		this.code = "";
 
 		this.add.image(0, 0, "background-join").setOrigin(0).setDepth(-1);
 
-		const buttonContainer = this.add.container(0, 456);
-		this.addButton("BACK", 0, buttonContainer, 0xe43b44, true).on(
+		const buttonContainer = this.add.container(0, 392);
+		this.addButton("NEXT", 0, buttonContainer).on("pointerdown", () => {
+			if (this.code.length === 4) {
+				this.canType = false;
+				joinGame(this.code)
+					.then(() => {
+						this.scene.start("GameScene");
+					})
+					.catch((code) => {
+						this.inputTitle
+							.setText("Game not found.")
+							.setFont("zepto-red-small", 16)
+							.setDropShadow(1, 1, 0x9e2835);
+						setTimeout(() => {
+							this.code = "";
+							this.canType = true;
+							this.inputText.setText("____");
+							this.inputTitle
+								.setText("Enter game ID:")
+								.setFont("zepto-small", 16)
+								.setDropShadow(1, 1, 0x222222);
+						}, 500);
+					});
+			}
+		});
+		this.addButton("BACK", 1, buttonContainer, 0xe43b44, true).on(
 			"pointerdown",
 			() => this.scene.start("MainMenu")
 		);
 
-		this.codeInput = this.add
+		this.inputText = this.add
 			.bitmapText(380, 264, "zepto", "____", 64)
 			.setOrigin(0, 1)
 			.setDropShadow(2, 2, 0x222222);
 
+		this.inputTitle = this.add
+			.bitmapText(380, 200, "zepto-small", "Enter game ID:", 16)
+			.setOrigin(0, 1)
+			.setDropShadow(1, 1, 0x222222);
+
 		this.input
 			.setDefaultCursor("url(assets/sprites/menu/pointer.png), default")
 			.keyboard.on("keydown", (e) => {
-				if (e.key === "Backspace") {
-					this.code = this.code.slice(0, -1);
-				} else if (
-					!e.metaKey &&
-					!e.ctrlKey &&
-					!e.altKey &&
-					e.key.length === 1
-				) {
-					this.code += e.key.toLowerCase();
-				}
+				if (this.canType) {
+					if (e.key === "Backspace") {
+						this.code = this.code.slice(0, -1);
+					} else if (
+						!e.metaKey &&
+						!e.ctrlKey &&
+						!e.altKey &&
+						e.key.length === 1 &&
+						this.code.length < 4
+					) {
+						this.code += e.key.toLowerCase();
+					}
 
-				this.codeInput.setText(this.code.padEnd(4, "_").toUpperCase());
-
-				if (this.code.length === 4) {
-					connect({ join: true, name: prompt("Name?"), data: this.code }).then(
-						() => {
-							this.scene.start("GameScene");
-						}
-					);
-					this.code = "";
+					this.inputText.setText(this.code.padEnd(4, "_").toUpperCase());
 				}
 			});
 	}

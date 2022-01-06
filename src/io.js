@@ -7,6 +7,7 @@ const server =
 let lastPacket = null;
 let socket = null;
 let left = [];
+let joinCallbacks = [];
 
 export default function sendPacket(data) {
 	socket.emit("packet.client", data);
@@ -28,7 +29,7 @@ export function hitPlayer(playerID) {
 	socket.emit("hit-player", playerID);
 }
 
-export async function connect({ join, name, data }) {
+export async function connect() {
 	const scriptEl = document.createElement("script");
 	scriptEl.src = `${server}/socket.io/socket.io.js`;
 	document.body.append(scriptEl);
@@ -41,8 +42,6 @@ export async function connect({ join, name, data }) {
 
 	socket = io(server);
 
-	socket.emit(join ? "join-game" : "host-game", data, name);
-
 	socket.on("packet.server", (data) => {
 		lastPacket = data;
 	});
@@ -51,9 +50,16 @@ export async function connect({ join, name, data }) {
 		alert("Game ID: " + id);
 	});
 
-	socket.on("packet.join", (data) => {
+	socket.on("join.resolve", (data) => {
 		lastPacket = data;
 		alert("Connected to game.");
+		joinCallbacks.forEach(({ resolve }) => resolve());
+		joinCallbacks = [];
+	});
+
+	socket.on("join.err", (code) => {
+		joinCallbacks.forEach(({ reject }) => reject(code));
+		joinCallbacks = [];
 	});
 
 	socket.on("die", () => {
@@ -65,4 +71,16 @@ export async function connect({ join, name, data }) {
 		left.push(id);
 		console.log("someone go byebye");
 	});
+}
+
+export function joinGame(code) {
+	socket.emit("join-game", code);
+
+	return new Promise((resolve, reject) => {
+		joinCallbacks.push({ resolve, reject });
+	});
+}
+
+export function setName(name) {
+	socket.emit("set-name", name);
 }

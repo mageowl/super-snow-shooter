@@ -1,6 +1,7 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
 import express from "express";
+import { ERROR } from "../errorCodes.mjs";
 
 const PORT = process.env.PORT ?? 3000;
 const debug = process.env.DEVELOP === "true";
@@ -17,6 +18,7 @@ const io = new Server(httpServer, {
 
 const games = {};
 const gamemode = { TOTEM_STEAL: 0, FREE_FOR_ALL: 0, TEAM_2: 1, TEAM_4: 2 };
+
 function generateID() {
 	const id = Math.random().toString(36).substring(2, 6);
 	if (games[id] == null) {
@@ -30,17 +32,13 @@ io.on("connection", (socket) => {
 	if (debug) console.log("player connected...");
 	let currentGame = null;
 
-	socket.on("join-game", (id, name) => {
+	socket.on("join-game", (id) => {
 		if (games?.[id]?.inLobby) {
-			games[id].players[socket.id] = {
-				name,
-				x: 0,
-				y: 0,
-				snowballs: []
-			};
 			currentGame = id;
-
-			socket.emit("packet.join", games[id]);
+			socket.emit("join.resolve", games[id]);
+		} else {
+			socket.emit("join.err", ERROR.GAME_NOT_FOUND);
+			if (debug) console.log(`Game not found (${id})`);
 		}
 	});
 
@@ -95,7 +93,7 @@ io.on("connection", (socket) => {
 				delete games[currentGame];
 				if (debug) console.log("CLEAN UP!", games);
 			} else {
-				socket.broadcast.emit("player-leave", id);
+				socket.broadcast.emit("player-leave", socket.id);
 			}
 		}
 	});
