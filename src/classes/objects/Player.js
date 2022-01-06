@@ -18,6 +18,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	launch = 0;
 	crouch = false;
 	snowballs = [];
+	invincible = false;
+	flash = 0;
 
 	constructor(scene, x, y, skin, local = false) {
 		super(scene, x, y, `player${skin}`);
@@ -42,6 +44,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 				Object.entries(this.keys).map(([name, { isDown }]) => [name, isDown])
 			);
 			const direction = input.D - input.A;
+
+			// If invincible and a key has been pressed
+			if (this.invincible && Object.values(input).reduce((a, b) => a || b)) {
+				// Turn off invincibility
+				this.invincible = false;
+				this.setVisible(true);
+			}
 
 			if (this.launch <= 0 && !this.crouch)
 				this.setVelocityX(Player.SPEED * direction);
@@ -106,10 +115,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		this.play(`${this.textureName}.${this.anim}`, true);
 		this.setFlipX(this.flip);
+
+		if (this.invincible) {
+			this.flash++;
+			this.setVisible(this.flash > 10);
+			if (this.flash === 20) this.flash = 0;
+		}
 	}
 
 	get frameData() {
-		const { anim, flip, x, y, textureName } = this;
+		const { anim, flip, x, y, textureName, invincible } = this;
 		const snowballs = this.snowballs.map((obj) => ({ x: obj.x, y: obj.y }));
 
 		return {
@@ -118,16 +133,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			x,
 			y,
 			textureName,
-			snowballs
+			snowballs,
+			invincible
 		};
 	}
 
 	set frameData(data) {
-		const { anim, flip, x, y, snowballs } = data;
+		const { anim, flip, x, y, snowballs, invincible } = data;
 		this.anim = anim;
 		this.flip = flip;
 		this.x = x;
 		this.y = y;
+		this.invincible = invincible;
 
 		this.#updateSnowballs(snowballs);
 		snowballs.forEach(({ x, y }, i) => {

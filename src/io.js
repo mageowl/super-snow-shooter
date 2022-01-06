@@ -11,6 +11,7 @@ let socket = null;
 let left = [];
 let joinCallbacks = [];
 let hostCallbacks = [];
+let deathCallbacks = [];
 
 export default function sendPacket(data) {
 	if (socket != null) {
@@ -85,7 +86,8 @@ export async function connect() {
 
 	socket.on("die", () => {
 		console.log("u ded");
-		open("about:blank", "_self").close();
+		// open("about:blank", "_self").close();
+		deathCallbacks.forEach((callback) => callback());
 	});
 
 	socket.on("player-leave", (id) => {
@@ -128,4 +130,8 @@ export function hostGame() {
 	} else {
 		return Promise.reject(ERROR.NOT_CONNECTED);
 	}
+}
+
+export function onDeath(callback) {
+	deathCallbacks.push(callback);
 }

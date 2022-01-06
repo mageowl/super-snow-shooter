@@ -34,7 +34,10 @@ export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 						Phaser.Math.Distance.Between(this.x, this.y, x, y) < 32
 				)
 				.forEach(([id, player]) => {
-					if (player.getBounds().contains(this.x, this.y)) {
+					if (
+						player.getBounds().contains(this.x, this.y) &&
+						!player.invincible
+					) {
 						hitPlayer(id);
 						this.hit();
 					}

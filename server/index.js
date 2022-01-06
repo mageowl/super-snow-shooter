@@ -16,7 +16,7 @@ const io = new Server(httpServer, {
 	}
 });
 
-const games = {};
+const games = { solo: {} };
 const gamemode = { TOTEM_STEAL: 0, FREE_FOR_ALL: 0, TEAM_2: 1, TEAM_4: 2 };
 
 function generateID() {
@@ -88,8 +88,6 @@ io.on("connection", (socket) => {
 			currentGame &&
 			Object.keys(games[currentGame]?.players).indexOf(id) !== -1
 		) {
-			delete games[currentGame].players[id];
-			console.log(games[currentGame].players);
 			const dead = io.sockets.sockets.get(id);
 			dead.emit("die");
 		}
@@ -100,7 +98,7 @@ io.on("connection", (socket) => {
 		if (currentGame) {
 			delete games[currentGame].players[socket.id];
 			socket.broadcast.emit("player-leave", socket.id);
-			if (Object.keys(games[currentGame].players).length === 0) {
+			if (Object.keys(games[currentGame]?.players).length === 0) {
 				delete games[currentGame];
 				if (debug) console.log("CLEAN UP!", games);
 			}

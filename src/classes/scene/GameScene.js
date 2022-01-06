@@ -1,4 +1,8 @@
-import sendPacket, { getRemovedPlayers, getPlayerID } from "../../io.js";
+import sendPacket, {
+	getRemovedPlayers,
+	getPlayerID,
+	onDeath
+} from "../../io.js";
 import Player from "../objects/Player.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 
@@ -69,6 +73,12 @@ export default class GameScene extends UpdatedScene {
 		const spawn = spawns[Math.floor(Math.random() * spawns.length)];
 		this.player.setPosition(spawn.x, spawn.y);
 
+		onDeath(() => {
+			const spawn = spawns[Math.floor(Math.random() * spawns.length)];
+			this.player.setPosition(spawn.x, spawn.y);
+			this.player.invincible = true;
+		});
+
 		this.cameras.main
 			.setZoom(3)
 			.startFollow(this.player)
@@ -96,10 +106,12 @@ export default class GameScene extends UpdatedScene {
 			});
 
 			removedPlayers.forEach((id) => {
-				console.log("bye bye ENEMY");
-				this.players[id].destroy();
-				this.removeUpdate(this.players[id]);
-				delete this.players[id];
+				if (this.players[id] != null) {
+					console.log("bye bye ENEMY");
+					this.players[id].destroy();
+					this.removeUpdate(this.players[id]);
+					delete this.players[id];
+				}
 			});
 		}
 	}
