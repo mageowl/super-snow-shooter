@@ -144,6 +144,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.flip = flip;
 		this.x = x;
 		this.y = y;
+
+		// When turning off invincibility, make sure they dont get invisibility
+		if (!invincible && this.invincible) this.setVisible(true);
 		this.invincible = invincible;
 
 		this.#updateSnowballs(snowballs);
