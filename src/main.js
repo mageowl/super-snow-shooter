@@ -26,5 +26,3 @@ const game = new Phaser.Game({
 	},
 	scene: [MainMenu, JoinMenu, GameScene]
 });
-
-connect();

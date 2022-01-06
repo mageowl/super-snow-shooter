@@ -34,6 +34,13 @@ io.on("connection", (socket) => {
 
 	socket.on("join-game", (id) => {
 		if (games?.[id]?.inLobby) {
+			games[id].players[socket.id] = {
+				name: "",
+				x: 0,
+				y: 0,
+				snowballs: []
+			};
+
 			currentGame = id;
 			socket.emit("join.resolve", games[id]);
 		} else {
@@ -66,22 +73,21 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("packet.client", (data) => {
-		if (currentGame && games[currentGame].players[socket.id]) {
+		if (currentGame && games[currentGame]?.players?.[socket.id]) {
 			games[currentGame].players[socket.id] = data;
 			socket.emit("packet.server", games[currentGame]);
-		} else if (currentGame && debug) console.log("oooohh!");
+		}
 	});
 
 	socket.on("hit-player", (id) => {
 		if (
 			currentGame &&
-			Object.keys(games[currentGame].players).indexOf(id) !== -1
+			Object.keys(games[currentGame]?.players).indexOf(id) !== -1
 		) {
 			delete games[currentGame].players[id];
 			console.log(games[currentGame].players);
 			const dead = io.sockets.sockets.get(id);
 			dead.emit("die");
-			dead.broadcast.emit("player-leave", id);
 		}
 	});
 
@@ -89,11 +95,10 @@ io.on("connection", (socket) => {
 		if (debug) console.log("player disconnect...");
 		if (currentGame) {
 			delete games[currentGame].players[socket.id];
+			socket.broadcast.emit("player-leave", socket.id);
 			if (Object.keys(games[currentGame].players).length === 0) {
 				delete games[currentGame];
 				if (debug) console.log("CLEAN UP!", games);
-			} else {
-				socket.broadcast.emit("player-leave", socket.id);
 			}
 		}
 	});

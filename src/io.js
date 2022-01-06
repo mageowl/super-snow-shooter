@@ -8,6 +8,7 @@ let lastPacket = null;
 let socket = null;
 let left = [];
 let joinCallbacks = [];
+let hostCallbacks = [];
 
 export default function sendPacket(data) {
 	socket.emit("packet.client", data);
@@ -48,6 +49,8 @@ export async function connect() {
 
 	socket.on("game-created", (id) => {
 		alert("Game ID: " + id);
+		hostCallbacks.forEach(({ resolve }) => resolve());
+		hostCallbacks = [];
 	});
 
 	socket.on("join.resolve", (data) => {
@@ -83,4 +86,12 @@ export function joinGame(code) {
 
 export function setName(name) {
 	socket.emit("set-name", name);
+}
+
+export function hostGame() {
+	socket.emit("host-game", {});
+
+	return new Promise((resolve, reject) => {
+		hostCallbacks.push({ resolve, reject });
+	});
 }

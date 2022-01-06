@@ -1,5 +1,5 @@
 import UpdatedScene from "../../template/scenes/UpdatedScene.js";
-import { connect, joinGame } from "../../../io.js";
+import { connect, joinGame, setName } from "../../../io.js";
 
 export default class JoinMenu extends UpdatedScene {
 	frame = 0;
@@ -9,7 +9,9 @@ export default class JoinMenu extends UpdatedScene {
 	/** @type {Phaser.GameObjects.BitmapText} */
 	inputTitle = null;
 	code = "";
+	name = "";
 	canType = true;
+	state = "code";
 
 	create() {
 		this.code = "";
@@ -18,11 +20,22 @@ export default class JoinMenu extends UpdatedScene {
 
 		const buttonContainer = this.add.container(0, 392);
 		this.addButton("NEXT", 0, buttonContainer).on("pointerdown", () => {
-			if (this.code.length === 4) {
+			if (
+				this.code.length === 4 &&
+				this.state === "code" &&
+				this.code !== "solo"
+			) {
 				this.canType = false;
+				this.inputTitle.setText("Connecting...");
 				joinGame(this.code)
 					.then(() => {
-						this.scene.start("GameScene");
+						// this.scene.start("GameScene");
+						this.canType = true;
+						this.inputText.setText("");
+						this.state = "name";
+						this.inputTitle
+							.setText("Enter Nickname:")
+							.setDropShadow(1, 1, 0x222222);
 					})
 					.catch((code) => {
 						this.inputTitle
@@ -39,6 +52,11 @@ export default class JoinMenu extends UpdatedScene {
 								.setDropShadow(1, 1, 0x222222);
 						}, 500);
 					});
+			} else if (this.state === "name" && this.name.length > 0) {
+				setName(this.name);
+				this.scene.start("GameScene");
+			} else if (this.code === "solo") {
+				this.scene.start("GameScene");
 			}
 		});
 		this.addButton("BACK", 1, buttonContainer, 0xe43b44, true).on(
@@ -61,18 +79,26 @@ export default class JoinMenu extends UpdatedScene {
 			.keyboard.on("keydown", (e) => {
 				if (this.canType) {
 					if (e.key === "Backspace") {
-						this.code = this.code.slice(0, -1);
+						if (this.state === "code") this.code = this.code.slice(0, -1);
+						if (this.state === "name") this.name = this.name.slice(0, -1);
 					} else if (
 						!e.metaKey &&
 						!e.ctrlKey &&
 						!e.altKey &&
 						e.key.length === 1 &&
-						this.code.length < 4
+						(this.state === "code"
+							? this.code.length < 4
+							: this.name.length < 10)
 					) {
-						this.code += e.key.toLowerCase();
+						if (this.state === "code") this.code += e.key.toLowerCase();
+						if (this.state === "name") this.name += e.key;
 					}
 
-					this.inputText.setText(this.code.padEnd(4, "_").toUpperCase());
+					this.inputText.setText(
+						this.state === "code"
+							? this.code.padEnd(4, "_").toUpperCase()
+							: this.name
+					);
 				}
 			});
 	}

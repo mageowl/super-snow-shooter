@@ -55,8 +55,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			}
 
 			this.sliding =
-				(this.body.blocked.right && input.D) ||
-				(this.body.blocked.left && input.A);
+				!this.body.onFloor() &&
+				((this.body.blocked.right && input.D) ||
+					(this.body.blocked.left && input.A));
 
 			if (this.sliding) {
 				if (this.body.velocity.y > 0) this.setVelocityY(Player.SLIDE_SPEED);

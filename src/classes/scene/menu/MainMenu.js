@@ -1,4 +1,4 @@
-import { connect } from "../../../io.js";
+import { connect, hostGame } from "../../../io.js";
 import UpdatedScene from "../../template/scenes/UpdatedScene.js";
 
 export default class MainMenu extends UpdatedScene {
@@ -46,7 +46,7 @@ export default class MainMenu extends UpdatedScene {
 		);
 		this.addButton("JOIN RANDOM GAME", 1, buttonContainer);
 		this.addButton("HOST GAME", 2, buttonContainer).on("pointerdown", () => {
-			connect({ join: false, name: prompt("Name?"), data: {} }).then(() => {
+			hostGame().then(() => {
 				this.scene.start("GameScene");
 			});
 		});

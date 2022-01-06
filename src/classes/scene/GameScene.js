@@ -22,10 +22,17 @@ export default class GameScene extends UpdatedScene {
 		this.load.image("ice", "sprites/tileset/ice.png");
 
 		this.load.tilemapTiledJSON("map", "tilemap/icy_peaks.json");
+
+		this.load.image("background-sky", "sprites/background/sky.png");
 	}
 
 	create() {
 		this.anims.createFromAseprite("player1");
+
+		this.background = this.add
+			.image(480, 264, "background-sky")
+			.setScrollFactor(0)
+			.setTint(0xaaaaaa);
 
 		const map = this.add.tilemap("map");
 		map.addTilesetImage("Snow", "snow");
