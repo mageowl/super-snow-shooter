@@ -1,5 +1,5 @@
 import UpdatedScene from "../../template/scenes/UpdatedScene.js";
-import { connect, isConnected, joinGame, setName } from "../../../io.js";
+import { isConnected, joinGame, setName } from "../../../io.js";
 import { ERROR } from "../../../../errorCodes.mjs";
 
 export default class JoinMenu extends UpdatedScene {
@@ -16,6 +16,7 @@ export default class JoinMenu extends UpdatedScene {
 
 	create() {
 		this.code = "";
+		this.name = "";
 
 		this.add.image(0, 0, "background-join").setOrigin(0).setDepth(-1);
 

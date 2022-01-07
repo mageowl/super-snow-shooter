@@ -54,9 +54,7 @@ export default class MainMenu extends UpdatedScene {
 		);
 		this.addButton("JOIN RANDOM GAME", 1, buttonContainer);
 		this.addButton("HOST GAME", 2, buttonContainer).on("pointerdown", () => {
-			hostGame().then(() => {
-				this.scene.start("GameScene");
-			});
+			this.scene.start("HostMenu");
 		});
 
 		this.input.setDefaultCursor(

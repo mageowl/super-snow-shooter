@@ -111,7 +111,7 @@ export default class GameScene extends UpdatedScene {
 							data.name,
 							false
 						);
-						console.log(data.name, " is a friend!");
+						console.log("friend!");
 					}
 
 					this.players[id].frameData = data;
