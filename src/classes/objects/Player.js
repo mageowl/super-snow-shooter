@@ -59,6 +59,8 @@ export default class Player extends Phaser.GameObjects.Container {
 			this.keys = this.scene.input.keyboard.addKeys("W,A,S,D,Space,SHIFT");
 			Player.local = this;
 
+			this.body.setCollideWorldBounds(true);
+
 			this.nameTag.setVisible(false);
 		}
 		this.textureName = `player${skin}`;

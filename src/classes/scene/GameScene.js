@@ -85,10 +85,12 @@ export default class GameScene extends UpdatedScene {
 			this.player.invincible = true;
 		});
 
+		const bounds = [16, 16, map.widthInPixels - 32, map.heightInPixels - 32];
 		this.cameras.main
 			.setZoom(3)
 			.startFollow(this.player)
-			.setBounds(16, 16, map.widthInPixels - 32, map.heightInPixels - 32);
+			.setBounds(...bounds);
+		this.physics.world.setBounds(...bounds);
 
 		this.scene.launch("HUD");
 	}
