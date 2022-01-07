@@ -1,6 +1,7 @@
+import UpdatedScene from "../template/scenes/UpdatedScene.js";
 import Snowball from "./Snowball.js";
 
-export default class Player extends Phaser.Physics.Arcade.Sprite {
+export default class Player extends Phaser.GameObjects.Container {
 	static SPEED = 140;
 	static CROUCH_SPEED = 35;
 	static JUMP_HEIGHT = 250;
@@ -21,21 +22,46 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	invincible = false;
 	flash = 0;
 
-	constructor(scene, x, y, skin, local = false) {
-		super(scene, x, y, `player${skin}`);
+	/** @type {Phaser.GameObjects.Sprite} */
+	sprite = null;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	nameTag = null;
+
+	/**
+	 * Creates an instance of Player.
+	 * @param {UpdatedScene} scene
+	 * @param {number} x
+	 * @param {number} y
+	 * @param {number} skin
+	 * @param {boolean} [local=false]
+	 * @memberof Player
+	 */
+	constructor(scene, x, y, skin, name, local = false) {
+		const sprite = scene.add.sprite(0, -4, `player${skin}`);
+		const nameTag = scene.add
+			.bitmapText(0, -16, "zepto-name-tag", name, 8)
+			.setOrigin(0.5, 1);
+
+		super(scene, x, y, [sprite, nameTag]);
 
 		scene.add.existing(this);
-		if (local) scene.physics.add.existing(this);
 		scene.updateObj(this);
 
+		this.sprite = sprite;
+		this.nameTag = nameTag;
+
 		if (local) {
+			this.setSize(9, 16);
+			scene.physics.world.enable(this);
+			scene.physics.add.existing(this);
+
 			this.isLocal = true;
 			this.keys = this.scene.input.keyboard.addKeys("W,A,S,D,Space,SHIFT");
 			Player.local = this;
+
+			this.nameTag.setVisible(false);
 		}
 		this.textureName = `player${skin}`;
-
-		if (local) this.setSize(9, 16).setOffset(4, 8);
 	}
 
 	update() {
@@ -49,18 +75,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			if (this.invincible && Object.values(input).reduce((a, b) => a || b)) {
 				// Turn off invincibility
 				this.invincible = false;
-				this.setVisible(true);
+				this.sprite.setVisible(true);
 			}
 
 			if (this.launch <= 0 && !this.crouch)
-				this.setVelocityX(Player.SPEED * direction);
+				this.body.setVelocityX(Player.SPEED * direction);
 			else if (this.launch > 0) this.launch--;
-			else if (this.crouch) this.setVelocityX(Player.CROUCH_SPEED * direction);
+			else if (this.crouch)
+				this.body.setVelocityX(Player.CROUCH_SPEED * direction);
 
 			this.crouch = input.SHIFT;
 
 			if (this.body.onFloor() && input.W) {
-				this.setVelocityY(-Player.JUMP_HEIGHT);
+				this.body.setVelocityY(-Player.JUMP_HEIGHT);
 			}
 
 			this.sliding =
@@ -69,9 +96,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 					(this.body.blocked.left && input.A));
 
 			if (this.sliding) {
-				if (this.body.velocity.y > 0) this.setVelocityY(Player.SLIDE_SPEED);
+				if (this.body.velocity.y > 0)
+					this.body.setVelocityY(Player.SLIDE_SPEED);
 				if (input.W) {
-					this.setVelocity(Player.SPEED * -direction, -Player.JUMP_HEIGHT);
+					this.body.setVelocity(Player.SPEED * -direction, -Player.JUMP_HEIGHT);
 					this.launch = 20;
 				}
 			}
@@ -86,7 +114,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 							this.y + 4,
 							[
 								Player.FIRE_VELOCITY *
-									-((this.sliding ? !this.flipX : this.flipX) * 2 - 1),
+									-(
+										(this.sliding ? !this.sprite.flipX : this.sprite.flipX) *
+											2 -
+										1
+									),
 								this.body.velocity.y / 10
 							],
 							this
@@ -113,12 +145,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			];
 		}
 
-		this.play(`${this.textureName}.${this.anim}`, true);
-		this.setFlipX(this.flip);
+		this.sprite.play(`${this.textureName}.${this.anim}`, true);
+		this.sprite.setFlipX(this.flip);
 
 		if (this.invincible) {
 			this.flash++;
-			this.setVisible(this.flash > 10);
+			this.sprite.setVisible(this.flash > 10);
 			if (this.flash === 20) this.flash = 0;
 		}
 	}
@@ -139,14 +171,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	set frameData(data) {
-		const { anim, flip, x, y, snowballs, invincible } = data;
+		const { anim, flip, x, y, snowballs, invincible, name } = data;
 		this.anim = anim;
 		this.flip = flip;
 		this.x = x;
 		this.y = y;
 
-		// When turning off invincibility, make sure they dont get invisibility
-		if (!invincible && this.invincible) this.setVisible(true);
+		if (this.nameTag.text === "" && name !== "") {
+			this.nameTag.setText(name);
+			console.log(name);
+		}
+
+		if (!invincible && this.invincible)
+			// When turning off invincibility, make sure they dont get invisibility
+			this.sprite.setVisible(true);
 		this.invincible = invincible;
 
 		this.#updateSnowballs(snowballs);

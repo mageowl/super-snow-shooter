@@ -104,6 +104,13 @@ io.on("connection", (socket) => {
 			}
 		}
 	});
+
+	socket.on("set-name", (name) => {
+		if (currentGame) {
+			games[currentGame].players[socket.id].name = name;
+			console.log(name);
+		}
+	});
 });
 
 app.get("/", (req, res) => {

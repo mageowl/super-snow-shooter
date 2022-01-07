@@ -1,4 +1,4 @@
-import { hitPlayer } from "../../io.js";
+import { getPlayerID, hitPlayer } from "../../io.js";
 
 export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, v = null, parent = null) {
@@ -36,7 +36,8 @@ export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 				.forEach(([id, player]) => {
 					if (
 						player.getBounds().contains(this.x, this.y) &&
-						!player.invincible
+						!player.invincible &&
+						player !== this.player
 					) {
 						hitPlayer(id);
 						this.hit();

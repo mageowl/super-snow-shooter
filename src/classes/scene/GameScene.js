@@ -30,6 +30,12 @@ export default class GameScene extends UpdatedScene {
 		this.load.tilemapTiledJSON("map", "tilemap/icy_peaks.json");
 
 		this.load.image("background-sky", "sprites/background/sky.png");
+
+		this.load.bitmapFont(
+			"zepto-name-tag",
+			"font/zepto-name-tag.png",
+			"font/zepto-name-tag.xml"
+		);
 	}
 
 	create() {
@@ -64,7 +70,7 @@ export default class GameScene extends UpdatedScene {
 			}
 		});
 
-		this.player = new Player(this, 0, 0, 1, true);
+		this.player = new Player(this, 0, 0, 1, "urself", true);
 		this.physics.add.collider(this.player, [
 			this.tilemap.snow,
 			this.tilemap.ice
@@ -97,8 +103,15 @@ export default class GameScene extends UpdatedScene {
 			Object.entries(gameData.players).forEach(([id, data]) => {
 				if (id !== pid) {
 					if (this.players[id] == null) {
-						this.players[id] = new Player(this, data.x, data.y, 1, false);
-						console.log("friend!");
+						this.players[id] = new Player(
+							this,
+							data.x,
+							data.y,
+							1,
+							data.name,
+							false
+						);
+						console.log(data.name, " is a friend!");
 					}
 
 					this.players[id].frameData = data;
