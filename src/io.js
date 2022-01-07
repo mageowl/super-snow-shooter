@@ -13,6 +13,8 @@ let joinCallbacks = [];
 let hostCallbacks = [];
 let deathCallbacks = [];
 
+export let currentGame = null;
+
 export default function sendPacket(data) {
 	if (socket != null) {
 		socket.emit("packet.client", data);
@@ -67,9 +69,9 @@ export async function connect() {
 	});
 
 	socket.on("game-created", (id) => {
-		alert("Game ID: " + id);
 		hostCallbacks.forEach(({ resolve }) => resolve());
 		hostCallbacks = [];
+		currentGame = id;
 	});
 
 	socket.on("join.resolve", (data) => {
@@ -81,6 +83,7 @@ export async function connect() {
 	socket.on("join.err", (code) => {
 		joinCallbacks.forEach(({ reject }) => reject(code));
 		joinCallbacks = [];
+		currentGame = null;
 	});
 
 	socket.on("die", () => {
@@ -102,6 +105,7 @@ export function isConnected() {
 export function joinGame(code) {
 	if (socket != null) {
 		socket.emit("join-game", code);
+		currentGame = code;
 
 		return new Promise((resolve, reject) => {
 			joinCallbacks.push({ resolve, reject });

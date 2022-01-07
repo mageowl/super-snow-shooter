@@ -89,6 +89,8 @@ export default class GameScene extends UpdatedScene {
 			.setZoom(3)
 			.startFollow(this.player)
 			.setBounds(16, 16, map.widthInPixels - 32, map.heightInPixels - 32);
+
+		this.scene.launch("HUD");
 	}
 
 	update() {
