@@ -1,8 +1,4 @@
-import sendPacket, {
-	getRemovedPlayers,
-	getPlayerID,
-	onDeath
-} from "../../io.js";
+import sendPacket, { getRemovedPlayers, getPlayerID } from "../../io.js";
 import Player from "../objects/Player.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 
@@ -62,21 +58,16 @@ export default class GameScene extends UpdatedScene {
 			}
 		});
 
-		this.player = new Player(this, 0, 0, 1, "urself", true);
-		this.physics.add.collider(this.player, [
-			this.tilemap.snow,
-			this.tilemap.ice,
-			this.tilemap.bridge
-		]);
+		this.player = new Player(this, 0, 0, 1, "urself", spawns, true);
+		this.player.setCollider(
+			this.physics.add.collider(this.player, [
+				this.tilemap.snow,
+				this.tilemap.ice,
+				this.tilemap.bridge
+			])
+		);
 
-		const spawn = spawns[Math.floor(Math.random() * spawns.length)];
-		this.player.setPosition(spawn.x, spawn.y);
-
-		onDeath(() => {
-			const spawn = spawns[Math.floor(Math.random() * spawns.length)];
-			this.player.setPosition(spawn.x, spawn.y);
-			this.player.invincible = true;
-		});
+		this.player.spawn();
 
 		const bounds = [16, 16, map.widthInPixels - 32, map.heightInPixels - 32];
 		this.cameras.main
