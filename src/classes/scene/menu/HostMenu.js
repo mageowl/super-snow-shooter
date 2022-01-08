@@ -15,7 +15,7 @@ export default class HostMenu extends UpdatedScene {
 	create() {
 		this.name = "";
 
-		this.add.image(0, 0, "background-join").setOrigin(0).setDepth(-1);
+		this.add.image(0, 0, "background-host").setOrigin(0).setDepth(-1);
 
 		const buttonContainer = this.add.container(0, 392);
 		this.addButton("NEXT", 0, buttonContainer).on("pointerdown", () => {

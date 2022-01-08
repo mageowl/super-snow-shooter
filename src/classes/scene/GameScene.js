@@ -10,7 +10,9 @@ export default class GameScene extends UpdatedScene {
 	tilemap = {
 		snow: null,
 		ice: null,
-		background: null
+		background: null,
+		/** @type {Phaser.Tilemaps.TilemapLayer} */
+		bridge: null
 	};
 	players = {};
 
@@ -25,6 +27,8 @@ export default class GameScene extends UpdatedScene {
 
 		this.load.image("snow", "sprites/tileset/ground.png");
 		this.load.image("ice", "sprites/tileset/ice.png");
+		this.load.image("background-tileset", "sprites/tileset/background.png");
+		this.load.image("bridge", "sprites/tileset/bridge.png");
 		this.load.image("snowfort", "sprites/tileset/snowfort.png");
 
 		this.load.tilemapTiledJSON("map", "tilemap/icy_peaks.json");
@@ -44,22 +48,10 @@ export default class GameScene extends UpdatedScene {
 		this.background = this.add
 			.image(480, 264, "background-sky")
 			.setScrollFactor(0)
-			.setTint(0xaaaaaa);
+			.setTint(0xaaaaaa)
+			.setDepth(-2);
 
-		const map = this.add.tilemap("map");
-		map.addTilesetImage("Snow", "snow");
-		map.addTilesetImage("Snowfort", "snowfort");
-		map.addTilesetImage("Ice", "ice");
-
-		this.tilemap.snow = map
-			.createLayer("snow", "Snow")
-			.setCollisionByProperty({ collide: true });
-		this.tilemap.ice = map
-			.createLayer("ice", "Ice")
-			.setCollisionByProperty({ collide: true });
-		this.tilemap.background = map
-			.createLayer("background", ["Snowfort"])
-			.setCollisionByProperty({ collide: true });
+		const map = this.createMap();
 
 		const spawns = [];
 		map.getObjectLayer("objects").objects.forEach(({ x, y, type }) => {
@@ -73,7 +65,8 @@ export default class GameScene extends UpdatedScene {
 		this.player = new Player(this, 0, 0, 1, "urself", true);
 		this.physics.add.collider(this.player, [
 			this.tilemap.snow,
-			this.tilemap.ice
+			this.tilemap.ice,
+			this.tilemap.bridge
 		]);
 
 		const spawn = spawns[Math.floor(Math.random() * spawns.length)];
@@ -131,5 +124,33 @@ export default class GameScene extends UpdatedScene {
 				}
 			});
 		}
+	}
+
+	createMap() {
+		const map = this.add.tilemap("map");
+		map.addTilesetImage("Snow", "snow");
+		map.addTilesetImage("Ice", "ice");
+		map.addTilesetImage("Background", "background-tileset");
+		map.addTilesetImage("Bridge", "bridge");
+		map.addTilesetImage("Snowfort", "snowfort");
+
+		this.tilemap.snow = map
+			.createLayer("snow", "Snow")
+			.setCollisionByProperty({ collide: true });
+		this.tilemap.ice = map
+			.createLayer("ice", "Ice")
+			.setCollisionByProperty({ collide: true });
+		this.tilemap.bridge = map.createLayer("bridge", "Bridge");
+		this.tilemap.background = map
+			.createLayer("background", ["Snowfort", "Background"])
+			.setDepth(-1);
+
+		this.tilemap.bridge
+			.filterTiles((t) => t.index !== -1)
+			.forEach((t) => {
+				t.setCollision(false, false, true, false);
+			});
+
+		return map;
 	}
 }

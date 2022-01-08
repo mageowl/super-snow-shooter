@@ -2,7 +2,12 @@ rules/snow/edge.tmx
 rules/snow/9splice.tmx
 rules/snow/corners_inner.tmx
 rules/snow/1x1.tmx
+rules/snow/1x1connect.tmx
+
 rules/ice/edge.tmx
 rules/ice/9splice.tmx
 rules/ice/corners_inner.tmx	
 rules/ice/1x1.tmx
+rules/ice/1x1connect.tmx
+
+rules/bridge.tmx

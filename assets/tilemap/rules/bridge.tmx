@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="13" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="1">
+ <tileset firstgid="1" source="../tilesets/automap.tsx"/>
+ <tileset firstgid="9" source="../tilesets/bridge.tsx"/>
+ <layer id="1" name="regions" width="13" height="5">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,3,3,3,0,3,3,3,0,3,3,3,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,3,3,3,0,0,0,0,0,3,3,3,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="input_prototype" width="13" height="5">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,7,7,0,7,7,7,0,7,7,1,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,4,7,7,0,0,0,0,0,7,7,4,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="output_bridge" width="13" height="5">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,9,0,0,0,10,0,0,0,11,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,9,0,0,0,0,0,0,0,11,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
