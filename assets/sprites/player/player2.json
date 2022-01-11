@@ -134,7 +134,7 @@
    { "name": "player2.jump", "from": 7, "to": 7, "direction": "forward", "color": "#000000ff" },
    { "name": "player2.fall", "from": 8, "to": 8, "direction": "forward", "color": "#000000ff" },
    { "name": "player2.slide", "from": 9, "to": 13, "direction": "forward", "color": "#000000ff" },
-   { "name": "player1.hit", "from": 14, "to": 14, "direction": "forward", "color": "#000000ff" }
+   { "name": "player2.hit", "from": 14, "to": 14, "direction": "forward", "color": "#000000ff" }
   ],
   "layers": [
    { "name": "Flattened", "opacity": 255, "blendMode": "normal" }

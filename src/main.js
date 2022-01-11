@@ -1,5 +1,6 @@
 import GameScene from "./classes/scene/GameScene.js";
 import HUD from "./classes/scene/HUD.js";
+import Load from "./classes/scene/Load.js";
 import HostMenu from "./classes/scene/menu/HostMenu.js";
 import JoinMenu from "./classes/scene/menu/JoinMenu.js";
 import MainMenu from "./classes/scene/menu/MainMenu.js";
@@ -27,7 +28,7 @@ const game = new Phaser.Game({
 	loader: {
 		baseURL: "assets"
 	},
-	scene: [MainMenu, JoinMenu, HostMenu, GameScene, HUD]
+	scene: [Load, MainMenu, JoinMenu, HostMenu, GameScene, HUD]
 });
 
 connect();

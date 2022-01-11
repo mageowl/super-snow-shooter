@@ -12,6 +12,7 @@ let left = [];
 let joinCallbacks = [];
 let hostCallbacks = [];
 let deathCallbacks = [];
+let hitCallbacks = [];
 
 export let currentGame = null;
 
@@ -46,6 +47,7 @@ export function getRemovedPlayers() {
 export function hitPlayer(playerID) {
 	if (socket != null) {
 		socket.emit("hit-player", playerID);
+		hitCallbacks.forEach((cb) => cb());
 	} else {
 		return ERROR.NOT_CONNECTED;
 	}
@@ -137,4 +139,8 @@ export function hostGame() {
 
 export function onDeath(callback) {
 	deathCallbacks.push(callback);
+}
+
+export function onKill(callback) {
+	hitCallbacks.push(callback);
 }

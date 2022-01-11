@@ -14,6 +14,7 @@ export default class Player extends Phaser.GameObjects.Container {
 	keys = null;
 	anim = "idle";
 	flip = false;
+	textureID = null;
 	textureName = "null";
 	recoil = 0;
 	sliding = false;
@@ -60,7 +61,7 @@ export default class Player extends Phaser.GameObjects.Container {
 			scene.physics.add.existing(this);
 
 			this.isLocal = true;
-			this.keys = this.scene.input.keyboard.addKeys("W,A,S,D,Space,SHIFT");
+			this.keys = this.scene.input.keyboard.addKeys("W,A,S,D,SPACE,SHIFT");
 			Player.local = this;
 			this.spawns = spawns;
 
@@ -77,6 +78,7 @@ export default class Player extends Phaser.GameObjects.Container {
 				setTimeout(() => {
 					this.collider.active = true;
 					this.hit = false;
+					this.body.setVelocity(0);
 					setTimeout(() => {
 						this.scene.cameras.main.startFollow(this);
 						this.spawn();
@@ -84,7 +86,10 @@ export default class Player extends Phaser.GameObjects.Container {
 				}, 2000);
 			});
 		}
-		this.textureName = `player${skin}`;
+
+		console.log(skin);
+		this.textureID = skin;
+		this.textureName = skin === 0 ? `player1` : `player${skin}`;
 	}
 
 	update() {
@@ -131,7 +136,7 @@ export default class Player extends Phaser.GameObjects.Container {
 					}
 				}
 
-				if (input.S) {
+				if (input.S || input.SPACE) {
 					if (this.recoil === 0) {
 						this.recoil = 10;
 						this.snowballs.push(
@@ -184,7 +189,7 @@ export default class Player extends Phaser.GameObjects.Container {
 	}
 
 	get frameData() {
-		const { anim, flip, x, y, textureName, invincible } = this;
+		const { anim, flip, x, y, textureID, invincible } = this;
 		const snowballs = this.snowballs.map((obj) => ({ x: obj.x, y: obj.y }));
 
 		return {
@@ -192,14 +197,14 @@ export default class Player extends Phaser.GameObjects.Container {
 			flip,
 			x,
 			y,
-			textureName,
+			textureID,
 			snowballs,
 			invincible
 		};
 	}
 
 	set frameData(data) {
-		const { anim, flip, x, y, snowballs, invincible, name } = data;
+		const { anim, flip, x, y, snowballs, invincible, name, textureID } = data;
 		this.anim = anim;
 		this.flip = flip;
 		this.x = x;
@@ -208,6 +213,12 @@ export default class Player extends Phaser.GameObjects.Container {
 		if (this.nameTag.text === "" && name !== "") {
 			this.nameTag.setText(name);
 			console.log(name);
+		}
+
+		if (this.textureID === 0 && textureID !== 0) {
+			this.textureID = textureID;
+			this.textureName = `player${this.textureID}`;
+			console.log(this.textureName);
 		}
 
 		if (!invincible && this.invincible)
@@ -239,6 +250,5 @@ export default class Player extends Phaser.GameObjects.Container {
 
 	setCollider(collider) {
 		this.collider = collider;
-		console.log(collider);
 	}
 }

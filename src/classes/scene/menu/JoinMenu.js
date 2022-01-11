@@ -13,6 +13,7 @@ export default class JoinMenu extends UpdatedScene {
 	name = "";
 	canType = true;
 	state = "code";
+	nxtButton = null;
 
 	create() {
 		this.code = "";
@@ -21,37 +22,62 @@ export default class JoinMenu extends UpdatedScene {
 		this.add.image(0, 0, "background-join").setOrigin(0).setDepth(-1);
 
 		const buttonContainer = this.add.container(0, 392);
-		this.addButton("NEXT", 0, buttonContainer).on("pointerdown", () => {
-			if (
-				this.code.length === 4 &&
-				this.state === "code" &&
-				this.code !== "solo"
-			) {
-				this.canType = false;
-				this.inputTitle.setText("Connecting...");
-				joinGame(this.code)
-					.then(() => {
-						// this.scene.start("GameScene");
-						this.canType = true;
-						this.inputText.setText("");
-						this.state = "name";
-						this.inputTitle
-							.setText("Enter Nickname:")
-							.setDropShadow(1, 1, 0x222222);
-					})
-					.catch((code) => {
-						if (code === ERROR.GAME_NOT_FOUND) {
+		this.nxtButton = this.addButton("NEXT", 0, buttonContainer).on(
+			"pointerdown",
+			() => {
+				if (
+					this.code.length === 4 &&
+					this.state === "code" &&
+					this.code !== "solo"
+				) {
+					this.canType = false;
+					this.inputTitle.setText("Connecting...");
+					joinGame(this.code)
+						.then(() => {
+							// this.scene.start("GameScene");
+							this.canType = true;
+							this.inputText.setText("");
+							this.state = "name";
 							this.inputTitle
-								.setText("Game not found.")
-								.setFont("zepto-red-small", 16)
-								.setDropShadow(1, 1, 0x9e2835);
-						} else {
-							this.inputTitle
-								.setText("Connection refused.")
-								.setFont("zepto-red-small", 16)
-								.setDropShadow(1, 1, 0x9e2835);
-						}
+								.setText("Enter Nickname:")
+								.setDropShadow(1, 1, 0x222222);
+						})
+						.catch((code) => {
+							if (code === ERROR.GAME_NOT_FOUND) {
+								this.inputTitle
+									.setText("Game not found.")
+									.setFont("zepto-red-small", 16)
+									.setDropShadow(1, 1, 0x9e2835);
+							} else {
+								this.inputTitle
+									.setText("Connection refused.")
+									.setFont("zepto-red-small", 16)
+									.setDropShadow(1, 1, 0x9e2835);
+							}
 
+							setTimeout(() => {
+								this.code = "";
+								this.canType = true;
+								this.inputText.setText("____");
+								this.inputTitle
+									.setText("Enter game ID:")
+									.setFont("zepto-small", 16)
+									.setDropShadow(1, 1, 0x222222);
+							}, 500);
+						});
+				} else if (this.code === "solo" && this.state === "code") {
+					if (isConnected()) {
+						this.state = "character-select";
+						this.inputTitle.setText("Select a skin:");
+						this.inputText.setVisible(false);
+						this.nxtButton.parentContainer.setVisible(false);
+						this.characterSelect.setVisible(true);
+					} else {
+						this.canType = false;
+						this.inputTitle
+							.setText("Not connected.")
+							.setFont("zepto-red-small", 16)
+							.setDropShadow(1, 1, 0x9e2835);
 						setTimeout(() => {
 							this.code = "";
 							this.canType = true;
@@ -60,35 +86,24 @@ export default class JoinMenu extends UpdatedScene {
 								.setText("Enter game ID:")
 								.setFont("zepto-small", 16)
 								.setDropShadow(1, 1, 0x222222);
-						}, 500);
-					});
-			} else if (this.state === "name" && this.name.length > 0) {
-				setName(this.name);
-				this.scene.start("GameScene");
-			} else if (this.code === "solo") {
-				if (isConnected()) {
-					this.scene.start("GameScene");
-				} else {
-					this.canType = false;
-					this.inputTitle
-						.setText("Not connected.")
-						.setFont("zepto-red-small", 16)
-						.setDropShadow(1, 1, 0x9e2835);
-					setTimeout(() => {
-						this.code = "";
-						this.canType = true;
-						this.inputText.setText("____");
-						this.inputTitle
-							.setText("Enter game ID:")
-							.setFont("zepto-small", 16)
-							.setDropShadow(1, 1, 0x222222);
-					}, 1000);
+						}, 1000);
+					}
+				} else if (this.state === "name" && this.name.length > 0) {
+					setName(this.name);
+					this.state = "character-select";
+					this.inputTitle.setText("Select a skin:");
+					this.inputText.setVisible(false);
+					this.nxtButton.parentContainer.setVisible(false);
+					this.characterSelect.setVisible(true);
 				}
 			}
-		});
+		);
 		this.addButton("BACK", 1, buttonContainer, 0xe43b44, true).on(
 			"pointerdown",
-			() => this.scene.start("MainMenu")
+			() => {
+				this.state = "code";
+				this.scene.start("MainMenu");
+			}
 		);
 
 		this.inputText = this.add
@@ -128,6 +143,39 @@ export default class JoinMenu extends UpdatedScene {
 					);
 				}
 			});
+
+		const character1 = this.add
+			.sprite(0, 0, "player1")
+			.setScale(6)
+			.setOrigin(0, 0.5)
+			.setInteractive()
+			.on("pointerover", () => {
+				character1.play({ key: "player1.walk", repeat: -1 });
+			})
+			.on("pointerout", () => {
+				character1.stop().setFrame(0);
+			})
+			.on("pointerdown", () => {
+				this.scene.start("GameScene", { textureID: 1 });
+			});
+		const character2 = this.add
+			.sprite(112, 0, "player2")
+			.setScale(6)
+			.setOrigin(0, 0.5)
+			.setInteractive()
+			.on("pointerover", () => {
+				character2.play({ key: "player2.walk", repeat: -1 });
+			})
+			.on("pointerout", () => {
+				character2.stop().setFrame(0);
+			})
+			.on("pointerdown", () => {
+				this.scene.start("GameScene", { textureID: 2 });
+			});
+
+		this.characterSelect = this.add
+			.container(380, 264, [character1, character2])
+			.setVisible(false);
 	}
 
 	update() {}
@@ -136,13 +184,13 @@ export default class JoinMenu extends UpdatedScene {
 		const y = index * 64;
 
 		const selector = this.add
-			.image(340, y + 5, "button-selector")
+			.image(340, 5, "button-selector")
 			.setScale(3)
 			.setVisible(false)
 			.setDepth(1)
 			.setFlipX(back);
 		const bg = this.add
-			.image(0, y - 18, "button")
+			.image(0, -18, "button")
 			.setTint(color)
 			.setOrigin(0, 0)
 			.setAlpha(0.1)
@@ -157,12 +205,14 @@ export default class JoinMenu extends UpdatedScene {
 				bg.setAlpha(0.1);
 				selector.setVisible(false);
 			});
-		const btn = this.add
-			.bitmapText(380, y, "zepto", text, 32)
+		const label = this.add
+			.bitmapText(380, 0, "zepto", text, 32)
 			.setOrigin(0, 0.5)
 			.setDropShadow(2, 2, 0x555555);
 
-		container.add([bg, btn, selector]);
+		const btn = this.add.container(0, y, [bg, label, selector]);
+
+		container.add(btn);
 
 		return bg;
 	}

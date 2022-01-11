@@ -11,36 +11,13 @@ export default class GameScene extends UpdatedScene {
 		bridge: null
 	};
 	players = {};
+	textureID = null;
 
-	preload() {
-		this.load.aseprite(
-			"player1",
-			"sprites/player/player1.png",
-			"sprites/player/player1.json"
-		);
-
-		this.load.image("snowball", "sprites/player/snowball.png");
-
-		this.load.image("snow", "sprites/tileset/ground.png");
-		this.load.image("ice", "sprites/tileset/ice.png");
-		this.load.image("background-tileset", "sprites/tileset/background.png");
-		this.load.image("bridge", "sprites/tileset/bridge.png");
-		this.load.image("snowfort", "sprites/tileset/snowfort.png");
-
-		this.load.tilemapTiledJSON("map", "tilemap/icy_peaks.json");
-
-		this.load.image("background-sky", "sprites/background/sky.png");
-
-		this.load.bitmapFont(
-			"zepto-name-tag",
-			"font/zepto-name-tag.png",
-			"font/zepto-name-tag.xml"
-		);
+	init(data) {
+		this.textureID = data.textureID;
 	}
 
 	create() {
-		this.anims.createFromAseprite("player1");
-
 		this.background = this.add
 			.image(480, 264, "background-sky")
 			.setScrollFactor(0)
@@ -58,7 +35,15 @@ export default class GameScene extends UpdatedScene {
 			}
 		});
 
-		this.player = new Player(this, 0, 0, 1, "urself", spawns, true);
+		this.player = new Player(
+			this,
+			0,
+			0,
+			this.textureID,
+			"urself",
+			spawns,
+			true
+		);
 		this.player.setCollider(
 			this.physics.add.collider(this.player, [
 				this.tilemap.snow,
@@ -91,11 +76,12 @@ export default class GameScene extends UpdatedScene {
 			Object.entries(gameData.players).forEach(([id, data]) => {
 				if (id !== pid) {
 					if (this.players[id] == null) {
+						console.log(data.textureID, data.textureName);
 						this.players[id] = new Player(
 							this,
 							data.x,
 							data.y,
-							1,
+							data.textureID,
 							data.name,
 							false
 						);

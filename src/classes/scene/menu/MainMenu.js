@@ -14,27 +14,6 @@ export default class MainMenu extends UpdatedScene {
 		host: null
 	};
 
-	preload() {
-		this.load.image("title", "sprites/menu/title.png");
-		this.load.image("background-main", "sprites/background/menu-1.png");
-		this.load.image("background-join", "sprites/background/menu-2.png");
-		this.load.image("background-host", "sprites/background/menu-3.png");
-		this.load.image("button", "sprites/menu/button.png");
-		this.load.image("button-selector", "sprites/menu/selector.png");
-		this.load.bitmapFont("zepto", "font/zepto.png", "font/zepto.xml");
-		this.load.bitmapFont(
-			"zepto-small",
-			"font/zepto-small.png",
-			"font/zepto-small.xml"
-		);
-		this.load.bitmapFont(
-			"zepto-red-small",
-			"font/zepto-red-small.png",
-			"font/zepto-red-small.xml"
-		);
-		this.load.image("server-down", "sprites/menu/server-down.png");
-	}
-
 	create() {
 		this.title = this.add.container(480, 100, [
 			this.add.image(5, 5, "title").setScale(3).setTint(0x000000),

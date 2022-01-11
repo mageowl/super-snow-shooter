@@ -39,7 +39,8 @@ io.on("connection", (socket) => {
 				x: 0,
 				y: 0,
 				snowballs: [],
-				gnotems: 3
+				anim: "idle",
+				textureID: 0
 			};
 
 			currentGame = id;
@@ -98,7 +99,7 @@ io.on("connection", (socket) => {
 		if (currentGame) {
 			delete games[currentGame].players[socket.id];
 			socket.broadcast.emit("player-leave", socket.id);
-			if (Object.keys(games[currentGame]?.players).length === 0) {
+			if (Object.keys(games?.[currentGame]?.players ?? {}).length === 0) {
 				delete games[currentGame];
 				if (debug) console.log("CLEAN UP!", games);
 			}
