@@ -29,9 +29,7 @@ export default class HUD extends UpdatedScene {
 			this.killstreak++;
 			this.killBar.play(`streak.${this.killstreak}`);
 			if (this.killstreak === 3) {
-				this.killBar.on("animationfinish", () => {
-					// Get a power-up
-				});
+				this.killBar.on("animationfinish", () => {});
 			}
 		});
 	}

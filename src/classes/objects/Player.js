@@ -8,6 +8,7 @@ export default class Player extends Phaser.GameObjects.Container {
 	static JUMP_HEIGHT = 250;
 	static FIRE_VELOCITY = 300;
 	static SLIDE_SPEED = 50;
+	/** @type {Player} */
 	static local = null;
 
 	isLocal = false;
@@ -73,12 +74,14 @@ export default class Player extends Phaser.GameObjects.Container {
 				this.hit = true;
 				this.anim = "hit";
 				this.collider.active = false;
-				this.body.setVelocityY(-Player.JUMP_HEIGHT / 2);
+				this.body.setVelocity(0, -Player.JUMP_HEIGHT / 2);
+				this.body.setCollideWorldBounds(false);
 				this.scene.cameras.main.stopFollow();
 				setTimeout(() => {
 					this.collider.active = true;
 					this.hit = false;
 					this.body.setVelocity(0);
+					this.body.setCollideWorldBounds(true);
 					setTimeout(() => {
 						this.scene.cameras.main.startFollow(this);
 						this.spawn();

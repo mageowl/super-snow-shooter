@@ -1,0 +1,1032 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
+    "automapping.whileDrawing": false,
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/laser-tag/assets/tilemap/level.json": {
+            "scale": 0.25,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1446,
+                "y": 1250
+            }
+        },
+        "/Users/owen/Documents/GitHub/laser-tag/assets/tilemap/level.json#tiles": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/laser-tag/assets/tilemap/level.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 881.8181818181819,
+                "y": 1334.8484848484848
+            }
+        },
+        "/Users/owen/Documents/GitHub/laser-tag/assets/tilemap/level.tmx#Sand": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/laser-tag/assets/tilemap/sand.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/laser-tag/assets/tileset/sand.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "/Users/owen/Documents/GitHub/laser-tag/assets/tileset/untitled.tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1582,
+                "y": 1598
+            }
+        },
+        "/Users/owen/Documents/GitHub/sister-graeae/assets/tilemaps/map.json": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 756,
+                "y": 529.5
+            }
+        },
+        "/Users/owen/Documents/GitHub/sister-graeae/assets/tilemaps/map.json#Tileset": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/sister-graeae/assets/tilemaps/map.json#tileset": {
+            "scaleInDock": 4
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json": {
+            "scale": 4,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 150.75,
+                "y": 91.375
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#Ground": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/house.json#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level-tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json": {
+            "scale": 2.83,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 320.14134275618375,
+                "y": 176.14840989399295
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.json#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx": {
+            "scale": 2.73,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 319.9633699633699,
+                "y": 176.007326007326
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_a.tmx#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx": {
+            "scale": 2,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 326.75,
+                "y": 244.75
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_2x_b.tmx#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx": {
+            "scale": 2.6971093749999997,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 320.1575761086812,
+                "y": 176.2998580656374
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bouncer.tmx#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json": {
+            "scale": 3,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 611,
+                "y": 206.16666666666669
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#Control": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#Level": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#clouds_1": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#clouds_2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#forest": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#rays": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#sun": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#town": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#treeline_1": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#treeline_2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.json#treeline_3": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx": {
+            "scale": 2.66,
+            "selectedLayer": 11,
+            "viewCenter": {
+                "x": 320.4887218045112,
+                "y": 176.12781954887217
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_bridge.tmx#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json": {
+            "scale": 1,
+            "selectedLayer": 12,
+            "viewCenter": {
+                "x": 517,
+                "y": 201.5
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_mushrooms_and_thorns.json#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json": {
+            "scale": 0.75,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 1328,
+                "y": 472.66666666666663
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.json#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx": {
+            "scale": 2.39,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 312.3430962343096,
+                "y": 176.35983263598325
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_town.tmx#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.json": {
+            "scale": 1,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 889,
+                "y": 406.5
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.json#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.json#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.json#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.json#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.json#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.tmx": {
+            "scale": 2.66,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 312.59398496240595,
+                "y": 176.12781954887217
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.tmx#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.tmx#Level": {
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.tmx#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.tmx#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/level_woods.tmx#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx": {
+            "scale": 3.48,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 152.72988505747125,
+                "y": 176.29310344827587
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#clouds_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#clouds_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#forest": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#rays": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#sun": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#town": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/party.tmx#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/playground.json": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 204,
+                "y": 301
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/playground.json#Control": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/playground.json#Ground": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/playground.json#Level": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/playground.json#Level-imported": {
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/tilesets/level.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/woods.json": {
+            "scale": 1.109298780487805,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 795.0968805826576,
+                "y": 178.04040126425718
+            }
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/woods.json#Control": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/woods.json#Level": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/woods.json#treeline_1": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/woods.json#treeline_2": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap/woods.json#treeline_3": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Documents/GitHub/venture/app/page/assets/map/MainIsland.json": {
+            "scale": 0.28,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 0,
+                "y": 1680.3571428571427
+            }
+        },
+        "/Users/owen/Documents/GitHub/venture/app/page/assets/map/MainIsland.json#blocks": {
+            "scaleInDock": 0.125,
+            "scaleInEditor": 0.75
+        },
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/Art.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/behavior.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/collision.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Documents/Projects/tiled-engine/test.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 79.81818181818184,
+                "y": 93
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/boxed-in/tilemaps/ch1.json": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 800,
+                "y": 199.83333333333331
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/boxed-in/tilemaps/ch1.json#tileset": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/boxed-in/tilemaps/ch1.tmx#tileset": {
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/grass_rules.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 240,
+                "y": 240.25
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/grass_tileset.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 8
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/level1.json": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 222.5,
+                "y": 258.75
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/level1.json#prototype": {
+            "scaleInDock": 1
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/level1.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 309,
+                "y": 195.25
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/level1.tmx#objects": {
+            "scaleInDock": 4
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/metal_rules.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 110.5,
+                "y": 127.75
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/tileset/grass_tileset.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 5.5
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/tileset/prototype.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/untitled.json": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240,
+                "y": 239.75
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/untitled.json#grass": {
+            "scaleInDock": 4
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/couting_stars/assets/tilemaps/untitled.json#prototype": {
+            "scaleInDock": 8
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/detective_pixel/assets/map.json": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 126,
+                "y": 300.25
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/detective_pixel/assets/map.json#House": {
+            "scaleInEditor": 5.5
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/detective_pixel/assets/map.json#grass": {
+            "scaleInDock": 5.5,
+            "scaleInEditor": 4
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/detective_pixel/assets/map.json#house": {
+            "scaleInDock": 5.5,
+            "scaleInEditor": 4
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/detective_pixel/assets/map.json#objects": {
+            "scaleInDock": 4,
+            "scaleInEditor": 5.5
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/venture/page/assets/map/MainIsland.json": {
+            "scale": 0.25,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 28,
+                "y": 3138
+            }
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/venture/page/assets/map/MainIsland.json#Block": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.125
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/venture/page/assets/map/MainIsland.json#Blocks": {
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
+        },
+        "/Users/owen/Google Drive/seattleowl.com/VSC Projects/venture/page/assets/map/MainIsland.json#blocks": {
+            "scaleInDock": 0.125,
+            "scaleInEditor": 0.5
+        },
+        "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/default-tilesets/Art.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/test.tmx": {
+            "scale": 4,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 70.25,
+                "y": 136.875
+            }
+        },
+        "9splice.tmx": {
+            "scale": 2.98,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159.39597315436245,
+                "y": 207.5503355704698
+            }
+        },
+        "icy_peaks.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 489.99999999999994,
+                "y": 325
+            }
+        },
+        "rules.tmx": {
+            "scale": 3.83,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 151.95822454308092,
+                "y": 160.1827676240209
+            }
+        },
+        "rules.tmx.json": {
+            "scale": 3.8326562499999994,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 152.11382445268868,
+                "y": 160.07175180398713
+            }
+        },
+        "rules/9splice.tmx": {
+            "scale": 2.84,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 149.11971830985917,
+                "y": 202.2887323943662
+            }
+        },
+        "rules/blend.tmx": {
+            "scale": 7.66,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 71.93211488250653,
+                "y": 80.09138381201045
+            }
+        },
+        "rules/bridge.tmx": {
+            "scale": 7.66,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 104.04699738903395,
+                "y": 40.013054830287196
+            }
+        },
+        "rules/corners_inner.tmx": {
+            "scale": 7.66,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 72.12793733681463,
+                "y": 80.09138381201045
+            }
+        },
+        "rules/edge.tmx": {
+            "scale": 4,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 72.125,
+                "y": 93.375
+            }
+        },
+        "rules/ice/1x1.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 160,
+                "y": 104.0909090909091
+            }
+        },
+        "rules/ice/1x1connect.tmx": {
+            "scale": 2,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 160,
+                "y": 160.25
+            }
+        },
+        "rules/ice/9splice.tmx": {
+            "scale": 3,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 159.99999999999997,
+                "y": 160.5
+            }
+        },
+        "rules/ice/corners_inner.tmx": {
+            "scale": 5.435511363636364,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 80.21324413317306,
+                "y": 80.12125646788272
+            }
+        },
+        "rules/snow/1x1.tmx": {
+            "scale": 5.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 160,
+                "y": 104.0909090909091
+            }
+        },
+        "rules/snow/1x1connect.tmx": {
+            "scale": 3.83,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 159.79112271540464,
+                "y": 159.92167101827675
+            }
+        },
+        "rules/snow/9splice.tmx": {
+            "scale": 2.8471726190476185,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 160.86133904771867,
+                "y": 202.13035070297397
+            }
+        },
+        "rules/snow/corners_inner.tmx": {
+            "scale": 5.435511363636364,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 87.75623268698061,
+                "y": 98.15083886478858
+            }
+        },
+        "rules/snow/edge.tmx": {
+            "scale": 4.982552083333333,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 63.822714681440445,
+                "y": 108.67924528301887
+            }
+        },
+        "rules/tilesets/automap.tsx": {
+            "scaleInDock": 1
+        },
+        "rules/tilesets/snow.tsx": {
+            "scaleInDock": 1
+        },
+        "tilesets/Bridge.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/automap.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/background.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/bridge.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/ice.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/snow.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "tilesets/snowfort.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "untitled.json": {
+            "scale": 1.76,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 471.02272727272725,
+                "y": 192.32954545454547
+            }
+        },
+        "untitled.json#Snow": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "/Users/owen/Documents/Projects/tiled-engine",
+    "last.externalTilesetPath": "/Users/owen/Documents/GitHub/super-snow-shooter/assets/tilemap/tilesets",
+    "last.imagePath": "/Users/owen/Documents/Projects/tiled-engine/art",
+    "last.objectTypesPath": "/Users/owen/Documents/GitHub/sister-graeae/assets/tilemaps/objecttypes.xml",
+    "last.worldFilePath": "/Users/owen/Documents/GitHub/the-sweater-theif/assets/tilemap",
+    "loadedWorlds": [
+    ],
+    "map.fixedSize": true,
+    "map.height": 10,
+    "map.lastUsedExportFilter": "JSON map files (*.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 10,
+    "openFiles": [
+        "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/Art.tsx",
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/behavior.tsx"
+    ],
+    "project": "super-snow-shooter.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/behavior.tsx",
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/Art.tsx",
+        "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
+        "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/test.tmx",
+        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/collision.tsx",
+        "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/default-tilesets/Art.tsx",
+        "icy_peaks.tmx",
+        "rules/ice/9splice.tmx",
+        "rules/bridge.tmx",
+        "tilesets/background.tsx",
+        "tilesets/ice.tsx",
+        "rules/snow/1x1connect.tmx"
+    ],
+    "tileset.embedInMap": false,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.type": 0
+}

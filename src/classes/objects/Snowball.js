@@ -37,6 +37,7 @@ export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 					if (
 						player.getBounds().contains(this.x, this.y) &&
 						!player.invincible &&
+						player.anim !== "hit" &&
 						player !== this.player
 					) {
 						hitPlayer(id);
