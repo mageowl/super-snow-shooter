@@ -1,7 +1,7 @@
-import { connect, hostGame, isConnected } from "../../../io.js";
-import UpdatedScene from "../../template/scenes/UpdatedScene.js";
+import { isConnected } from "../../../io.js";
+import Menu, { BUTTON } from "../../template/scenes/Menu.js";
 
-export default class MainMenu extends UpdatedScene {
+export default class MainMenu extends Menu {
 	frame = 0;
 
 	/** @type {Phaser.GameObjects.Container} */
@@ -29,8 +29,9 @@ export default class MainMenu extends UpdatedScene {
 				.setScale(3);
 
 		const buttonContainer = this.add.container(0, 264);
-		this.addButton("PLAY", 0, buttonContainer, 0x63c74d).on("pointerdown", () =>
-			this.scene.start("JoinMenu")
+		this.addButton("PLAY", 0, buttonContainer, BUTTON.NORMAL, 0x63c74d).on(
+			"pointerdown",
+			() => this.scene.start("JoinMenu")
 		);
 		this.addButton("JOIN RANDOM GAME", 1, buttonContainer);
 		this.addButton("HOST GAME", 2, buttonContainer).on("pointerdown", () => {
@@ -53,39 +54,5 @@ export default class MainMenu extends UpdatedScene {
 			this.serverWarning.destroy();
 			this.serverWarning = null;
 		}
-	}
-
-	addButton(text, index, container, color = 0xffffff) {
-		const y = index * 64;
-
-		const selector = this.add
-			.image(340, y + 5, "button-selector")
-			.setScale(3)
-			.setVisible(false)
-			.setDepth(1);
-		const bg = this.add
-			.image(0, y - 18, "button")
-			.setTint(color)
-			.setOrigin(0, 0)
-			.setAlpha(0.1)
-			.setInteractive({
-				cursor: "url(assets/sprites/menu/pointer_select.png), pointer"
-			})
-			.on("pointerover", () => {
-				bg.setAlpha(1);
-				selector.setVisible(true);
-			})
-			.on("pointerout", () => {
-				bg.setAlpha(0.1);
-				selector.setVisible(false);
-			});
-		const btn = this.add
-			.bitmapText(380, y, "zepto", text, 32)
-			.setOrigin(0, 0.5)
-			.setDropShadow(2, 2, 0x555555);
-
-		container.add([bg, btn, selector]);
-
-		return bg;
 	}
 }

@@ -1,4 +1,4 @@
-import { getPlayerID, hitPlayer } from "../../io.js";
+import { hitPlayer } from "../../io.js";
 
 export default class Snowball extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, v = null, parent = null) {

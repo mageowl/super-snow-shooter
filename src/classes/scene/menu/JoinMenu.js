@@ -1,8 +1,8 @@
-import UpdatedScene from "../../template/scenes/UpdatedScene.js";
 import { isConnected, joinGame, setName } from "../../../io.js";
 import { ERROR } from "../../../../errorCodes.mjs";
+import Menu, { BUTTON } from "../../template/scenes/Menu.js";
 
-export default class JoinMenu extends UpdatedScene {
+export default class JoinMenu extends Menu {
 	frame = 0;
 
 	/** @type {Phaser.GameObjects.BitmapText} */
@@ -22,7 +22,7 @@ export default class JoinMenu extends UpdatedScene {
 		this.add.image(0, 0, "background-join").setOrigin(0).setDepth(-1);
 
 		const buttonContainer = this.add.container(0, 392);
-		this.nxtButton = this.addButton("NEXT", 0, buttonContainer).on(
+		this.nxtButton = this.addButton("NEXT", 0, buttonContainer, BUTTON.NEXT).on(
 			"pointerdown",
 			() => {
 				if (
@@ -98,7 +98,7 @@ export default class JoinMenu extends UpdatedScene {
 				}
 			}
 		);
-		this.addButton("BACK", 1, buttonContainer, 0xe43b44, true).on(
+		this.addButton("BACK", 1, buttonContainer, BUTTON.BACK, 0xe43b44).on(
 			"pointerdown",
 			() => {
 				this.state = "code";
@@ -179,41 +179,4 @@ export default class JoinMenu extends UpdatedScene {
 	}
 
 	update() {}
-
-	addButton(text, index, container, color = 0xffffff, back = false) {
-		const y = index * 64;
-
-		const selector = this.add
-			.image(340, 5, "button-selector")
-			.setScale(3)
-			.setVisible(false)
-			.setDepth(1)
-			.setFlipX(back);
-		const bg = this.add
-			.image(0, -18, "button")
-			.setTint(color)
-			.setOrigin(0, 0)
-			.setAlpha(0.1)
-			.setInteractive({
-				cursor: "url(assets/sprites/menu/pointer_select.png), pointer"
-			})
-			.on("pointerover", () => {
-				bg.setAlpha(1);
-				selector.setVisible(true);
-			})
-			.on("pointerout", () => {
-				bg.setAlpha(0.1);
-				selector.setVisible(false);
-			});
-		const label = this.add
-			.bitmapText(380, 0, "zepto", text, 32)
-			.setOrigin(0, 0.5)
-			.setDropShadow(2, 2, 0x555555);
-
-		const btn = this.add.container(0, y, [bg, label, selector]);
-
-		container.add(btn);
-
-		return bg;
-	}
 }

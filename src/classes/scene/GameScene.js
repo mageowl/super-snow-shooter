@@ -40,7 +40,7 @@ export default class GameScene extends UpdatedScene {
 			0,
 			0,
 			this.textureID,
-			"urself",
+			"ur self",
 			spawns,
 			true
 		);
@@ -69,10 +69,10 @@ export default class GameScene extends UpdatedScene {
 
 		const gameData = sendPacket(this.player.frameData);
 		const pid = getPlayerID();
-		const removedPlayers = getRemovedPlayers();
-		if (removedPlayers.length > 0) console.log("ppl who ded: ", removedPlayers);
 
 		if (gameData) {
+			const removedPlayers = Object.keys(gameData.players);
+
 			Object.entries(gameData.players).forEach(([id, data]) => {
 				if (id !== pid) {
 					if (this.players[id] == null) {
@@ -90,9 +90,12 @@ export default class GameScene extends UpdatedScene {
 
 					this.players[id].frameData = data;
 				}
+
+				removedPlayers.splice(removedPlayers.indexOf(id), 1);
 			});
 
 			removedPlayers.forEach((id) => {
+				console.log(id);
 				if (this.players[id] != null) {
 					console.log("bye bye ENEMY");
 					this.players[id].destroy();
