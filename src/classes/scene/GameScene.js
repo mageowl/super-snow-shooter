@@ -1,4 +1,4 @@
-import sendPacket, { getRemovedPlayers, getPlayerID } from "../../io.js";
+import sendPacket, { getPlayerID } from "../../io.js";
 import Player from "../objects/Player.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 
@@ -71,12 +71,11 @@ export default class GameScene extends UpdatedScene {
 		const pid = getPlayerID();
 
 		if (gameData) {
-			const removedPlayers = Object.keys(gameData.players);
+			const removedPlayers = Object.keys(this.players);
 
 			Object.entries(gameData.players).forEach(([id, data]) => {
 				if (id !== pid) {
 					if (this.players[id] == null) {
-						console.log(data.textureID, data.textureName);
 						this.players[id] = new Player(
 							this,
 							data.x,
@@ -85,17 +84,15 @@ export default class GameScene extends UpdatedScene {
 							data.name,
 							false
 						);
-						console.log("friend!");
+					} else {
+						removedPlayers.splice(removedPlayers.indexOf(id), 1);
 					}
 
 					this.players[id].frameData = data;
 				}
-
-				removedPlayers.splice(removedPlayers.indexOf(id), 1);
 			});
 
 			removedPlayers.forEach((id) => {
-				console.log(id);
 				if (this.players[id] != null) {
 					console.log("bye bye ENEMY");
 					this.players[id].destroy();

@@ -8,7 +8,6 @@ const server =
 
 let lastPacket = null;
 let socket = null;
-let left = [];
 let joinCallbacks = [];
 let hostCallbacks = [];
 let deathCallbacks = [];
@@ -28,17 +27,6 @@ export default function sendPacket(data) {
 export function getPlayerID() {
 	if (socket != null) {
 		return socket.id;
-	} else {
-		return ERROR.NOT_CONNECTED;
-	}
-}
-
-export function getRemovedPlayers() {
-	if (socket != null) {
-		const data = left;
-		if (left.length) console.log("DESTRUCTION!");
-		left = [];
-		return data;
 	} else {
 		return ERROR.NOT_CONNECTED;
 	}
@@ -92,11 +80,6 @@ export async function connect() {
 		console.log("u ded");
 		// open("about:blank", "_self").close();
 		deathCallbacks.forEach((callback) => callback());
-	});
-
-	socket.on("player-leave", (id) => {
-		left.push(id);
-		console.log("someone go byebye");
 	});
 }
 

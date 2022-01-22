@@ -98,7 +98,6 @@ io.on("connection", (socket) => {
 		if (debug) console.log("player disconnect...");
 		if (currentGame) {
 			delete games[currentGame].players[socket.id];
-			socket.broadcast.emit("player-leave", socket.id);
 			if (Object.keys(games?.[currentGame]?.players ?? {}).length === 0) {
 				delete games[currentGame];
 				if (debug) console.log("CLEAN UP!", games);
