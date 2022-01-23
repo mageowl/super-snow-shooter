@@ -2,11 +2,15 @@ import UpdatedScene from "../template/scenes/UpdatedScene.js";
 import { currentGame, onDeath, onKill } from "../../io.js";
 import PowerUp from "../objects/PowerUp.js";
 
-const powerUps = [new PowerUp("JUMP_HEIGHT", 400)];
+const powerUps = [
+	new PowerUp("jump-boost", "JUMP_HEIGHT", 300),
+	new PowerUp("speed", "SPEED", 250)
+];
 
 export default class HUD extends UpdatedScene {
 	killstreak = 0;
 	killBar = null;
+	activePowerUp = null;
 
 	create() {
 		const gameCode = this.add
@@ -23,21 +27,30 @@ export default class HUD extends UpdatedScene {
 			.sprite(25, 25, "killstreak")
 			.setScale(3)
 			.setOrigin(0, 0.5);
+		this.activePowerUp = this.add
+			.sprite(25, 50, "powerUp.jumpBoost")
+			.setVisible(false)
+			.setScale(3)
+			.setOrigin(0);
 
 		onDeath(() => {
 			this.killstreak = 0;
 			this.killBar.setFrame(0);
 			PowerUp.reset();
+			this.activePowerUp.setVisible(false);
 		});
 		onKill(() => {
 			if (this.killstreak !== 3) {
 				this.killstreak++;
 				this.killBar.play(`streak.${this.killstreak}`);
 				if (this.killstreak === 3) {
-					console.log("LOL");
 					this.killBar.on("animationcomplete", () => {
-						powerUps[0].apply();
-						console.log(PowerUp.getStat("JUMP_HEIGHT"));
+						const powerUp =
+							powerUps[Math.floor(Math.random() * powerUps.length)];
+						powerUp.apply();
+						this.activePowerUp
+							.setTexture(`powerUp.${powerUp.name}`)
+							.setVisible(true);
 					});
 				}
 			}

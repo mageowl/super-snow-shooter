@@ -1,5 +1,6 @@
 import { onDeath } from "../../io.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
+import PowerUp from "./PowerUp.js";
 import Snowball from "./Snowball.js";
 
 export default class Player extends Phaser.GameObjects.Container {
@@ -111,15 +112,15 @@ export default class Player extends Phaser.GameObjects.Container {
 				}
 
 				if (this.launch <= 0 && !this.crouch)
-					this.body.setVelocityX(Player.SPEED * direction);
+					this.body.setVelocityX(PowerUp.getStat("SPEED") * direction);
 				else if (this.launch > 0) this.launch--;
 				else if (this.crouch)
-					this.body.setVelocityX(Player.CROUCH_SPEED * direction);
+					this.body.setVelocityX(PowerUp.getStat("CROUCH_SPEED") * direction);
 
 				this.crouch = input.SHIFT;
 
 				if (this.body.onFloor() && input.W) {
-					this.body.setVelocityY(-Player.JUMP_HEIGHT);
+					this.body.setVelocityY(-PowerUp.getStat("JUMP_HEIGHT"));
 				}
 
 				this.sliding =
