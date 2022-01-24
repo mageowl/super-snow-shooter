@@ -132,8 +132,8 @@ export default class Player extends Phaser.GameObjects.Container {
 						this.body.setVelocityY(Player.SLIDE_SPEED);
 					if (input.W) {
 						this.body.setVelocity(
-							Player.SPEED * -direction,
-							-Player.JUMP_HEIGHT
+							PowerUp.getStat("SPEED") * -direction,
+							-PowerUp.getStat("JUMP_HEIGHT")
 						);
 						this.launch = 20;
 					}
