@@ -129,11 +129,11 @@ export default class Player extends Phaser.GameObjects.Container {
 
 				if (this.sliding) {
 					if (this.body.velocity.y > 0)
-						this.body.setVelocityY(Player.SLIDE_SPEED);
+						this.body.setVelocityY(PowerUp.getStat("SLIDE_SPEED"));
 					if (input.W) {
 						this.body.setVelocity(
-							Player.SPEED * -direction,
-							-Player.JUMP_HEIGHT
+							PowerUp.getStat("SPEED") * -direction,
+							-PowerUp.getStat("JUMP_HEIGHT")
 						);
 						this.launch = 20;
 					}
@@ -148,7 +148,7 @@ export default class Player extends Phaser.GameObjects.Container {
 								this.x,
 								this.y + 2,
 								[
-									Player.FIRE_VELOCITY *
+									PowerUp.getStat("FIRE_VELOCITY") *
 										-(
 											(this.sliding ? !this.sprite.flipX : this.sprite.flipX) *
 												2 -
