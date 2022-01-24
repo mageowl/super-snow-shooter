@@ -44,8 +44,9 @@ export default class HUD extends UpdatedScene {
 			if (this.killstreak !== 3) {
 				this.killstreak++;
 				this.killBar.play(`streak.${this.killstreak}`);
+				console.log(this.killstreak);
 				if (this.killstreak === 3) {
-					this.killBar.on("animationcomplete", () => {
+					this.killBar.once("animationcomplete", () => {
 						const powerUp =
 							powerUps[Math.floor(Math.random() * powerUps.length)];
 						powerUp.apply();
@@ -54,6 +55,7 @@ export default class HUD extends UpdatedScene {
 							.setVisible(true);
 					});
 				}
+				console.log(this.killstreak);
 			}
 		});
 	}

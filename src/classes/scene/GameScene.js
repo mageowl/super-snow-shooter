@@ -94,7 +94,6 @@ export default class GameScene extends UpdatedScene {
 
 			removedPlayers.forEach((id) => {
 				if (this.players[id] != null) {
-					console.log("bye bye ENEMY");
 					this.players[id].destroy();
 					this.removeUpdate(this.players[id]);
 					delete this.players[id];

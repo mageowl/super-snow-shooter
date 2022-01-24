@@ -91,7 +91,6 @@ export default class Player extends Phaser.GameObjects.Container {
 			});
 		}
 
-		console.log(skin);
 		this.textureID = skin;
 		this.textureName = skin === 0 ? `player1` : `player${skin}`;
 	}
@@ -216,13 +215,11 @@ export default class Player extends Phaser.GameObjects.Container {
 
 		if (this.nameTag.text === "" && name !== "") {
 			this.nameTag.setText(name);
-			console.log(name);
 		}
 
 		if (this.textureID === 0 && textureID !== 0) {
 			this.textureID = textureID;
 			this.textureName = `player${this.textureID}`;
-			console.log(this.textureName);
 		}
 
 		if (!invincible && this.invincible)

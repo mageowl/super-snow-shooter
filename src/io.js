@@ -77,7 +77,6 @@ export async function connect() {
 	});
 
 	socket.on("die", () => {
-		console.log("u ded");
 		// open("about:blank", "_self").close();
 		deathCallbacks.forEach((callback) => callback());
 	});
