@@ -60,11 +60,17 @@ export default class Load extends UpdatedScene {
 			"sprites/hud/killstreak.png",
 			"sprites/hud/killstreak.json"
 		);
+
+		// POWER-UPS
 		this.load.image(
 			"powerUp.jump-boost",
 			"sprites/hud/power-ups/jump-boost.png"
 		);
 		this.load.image("powerUp.speed", "sprites/hud/power-ups/speed.png");
+		this.load.image(
+			"powerUp.snow-speed",
+			"sprites/hud/power-ups/snow-speed.png"
+		);
 	}
 
 	create() {
