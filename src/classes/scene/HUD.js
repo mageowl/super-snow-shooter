@@ -4,7 +4,7 @@ import PowerUp from "../objects/PowerUp.js";
 
 const powerUps = [
 	new PowerUp("jump-boost", "JUMP_HEIGHT", 300),
-	new PowerUp("speed", "SPEED", 250)
+	new PowerUp("speed", "SPEED", 200)
 ];
 
 export default class HUD extends UpdatedScene {
