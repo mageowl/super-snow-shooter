@@ -1,3 +1,4 @@
+import { ERROR } from "../../../errorCodes.mjs";
 import sendPacket, { getPlayerID } from "../../io.js";
 import Player from "../objects/Player.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
@@ -70,7 +71,7 @@ export default class GameScene extends UpdatedScene {
 		const gameData = sendPacket(this.player.frameData);
 		const pid = getPlayerID();
 
-		if (gameData) {
+		if (gameData !== ERROR.NOT_CONNECTED) {
 			const removedPlayers = Object.keys(this.players);
 
 			Object.entries(gameData.players).forEach(([id, data]) => {

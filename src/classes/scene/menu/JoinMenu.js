@@ -66,28 +66,11 @@ export default class JoinMenu extends Menu {
 							}, 500);
 						});
 				} else if (this.code === "solo" && this.state === "code") {
-					if (isConnected()) {
-						this.state = "character-select";
-						this.inputTitle.setText("Select a skin:");
-						this.inputText.setVisible(false);
-						this.nxtButton.parentContainer.setVisible(false);
-						this.characterSelect.setVisible(true);
-					} else {
-						this.canType = false;
-						this.inputTitle
-							.setText("Not connected.")
-							.setFont("zepto-red-small", 16)
-							.setDropShadow(1, 1, 0x9e2835);
-						setTimeout(() => {
-							this.code = "";
-							this.canType = true;
-							this.inputText.setText("____");
-							this.inputTitle
-								.setText("Enter game ID:")
-								.setFont("zepto-small", 16)
-								.setDropShadow(1, 1, 0x222222);
-						}, 1000);
-					}
+					this.state = "character-select";
+					this.inputTitle.setText("Select a skin:");
+					this.inputText.setVisible(false);
+					this.nxtButton.parentContainer.setVisible(false);
+					this.characterSelect.setVisible(true);
 				} else if (this.state === "name" && this.name.length > 0) {
 					setName(this.name);
 					this.state = "character-select";
