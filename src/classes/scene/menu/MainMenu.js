@@ -35,7 +35,7 @@ export default class MainMenu extends Menu {
 		);
 		this.addButton("JOIN RANDOM GAME", 1, buttonContainer);
 		this.addButton("HOST GAME", 2, buttonContainer).on("pointerdown", () => {
-			this.scene.start("HostMenu");
+			if (isConnected()) this.scene.start("HostMenu");
 		});
 
 		this.input.setDefaultCursor(
