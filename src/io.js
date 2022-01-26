@@ -2,7 +2,7 @@ import { ERROR } from "../errorCodes.mjs";
 
 // get server
 const server =
-	location.hostname === "seattleowl.com"
+	location.hostname === "mageowls.com"
 		? "https://super-snow-shooter.herokuapp.com"
 		: "http://localhost:3000";
 
