@@ -119,8 +119,8 @@ app.get("/", (req, res) => {
 			process.env.VERSION
 		}, running NodeJS ${process.version}.<br> ${
 			!debug
-				? "Go to https://seattleowl.com/super-snow-shooter to play."
-				: "<strong>! WARNING !</strong> Debug mode is enabled. The server can currently be accessed from localhost. Please contact owen@seattleowl.com if you are seeing this."
+				? "Go to https://mageowls.com/super-snow-shooter to play."
+				: "<strong>! WARNING !</strong> Debug mode is enabled. The server can currently be accessed from localhost. Please contact owen@mageowls.com if you are seeing this."
 		}</p>`
 	);
 });
