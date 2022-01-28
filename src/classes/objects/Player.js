@@ -1,6 +1,7 @@
 import { onDeath } from "../../io.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 import PowerUp from "./PowerUp.js";
+import Present from "./Present.js";
 import Snowball from "./Snowball.js";
 
 export default class Player extends Phaser.GameObjects.Container {
@@ -63,7 +64,7 @@ export default class Player extends Phaser.GameObjects.Container {
 			scene.physics.add.existing(this);
 
 			this.isLocal = true;
-			this.keys = this.scene.input.keyboard.addKeys("W,A,S,D,SPACE,SHIFT");
+			this.keys = this.scene.input.keyboard.addKeys("W,A,S,D,SPACE,SHIFT,E");
 			Player.local = this;
 			this.spawns = spawns;
 
@@ -164,6 +165,30 @@ export default class Player extends Phaser.GameObjects.Container {
 					this.recoil--;
 				}
 
+				if (input.E) {
+					if (PowerUp.getFlag("SHOOT_PRESENTS") && this.recoil === 0) {
+						this.snowballs.push(
+							new Present(
+								this.scene,
+								this.x,
+								this.y + 2,
+								[
+									(PowerUp.getStat("FIRE_VELOCITY") / 2) *
+										-(
+											(this.sliding ? !this.sprite.flipX : this.sprite.flipX) *
+												2 -
+											1
+										),
+									this.body.velocity.y / 10 +
+										-PowerUp.getStat("FIRE_VELOCITY") / 1.5
+								],
+								this
+							)
+						);
+						this.recoil = 20;
+					}
+				}
+
 				if (this.body.onFloor()) {
 					if (input.D || input.A) this.anim = "walk";
 					else if (this.recoil > 8) this.anim = "shoot";
@@ -193,7 +218,11 @@ export default class Player extends Phaser.GameObjects.Container {
 
 	get frameData() {
 		const { anim, flip, x, y, textureID, invincible } = this;
-		const snowballs = this.snowballs.map((obj) => ({ x: obj.x, y: obj.y }));
+		const snowballs = this.snowballs.map((obj) => ({
+			x: obj.x,
+			y: obj.y,
+			type: obj.constructor.name.toLowerCase()
+		}));
 
 		return {
 			anim,
@@ -237,7 +266,13 @@ export default class Player extends Phaser.GameObjects.Container {
 	#updateSnowballs(snowballs) {
 		if (snowballs.length > this.snowballs.length) {
 			const sb = snowballs[this.snowballs.length];
-			this.snowballs.push(new Snowball(this.scene, sb.x, sb.y));
+			this.snowballs.push(
+				new (sb.type === "snowball" ? Snowball : Present)(
+					this.scene,
+					sb.x,
+					sb.y
+				)
+			);
 		} else if (snowballs.length < this.snowballs.length) {
 			this.snowballs.splice(-1)[0].destroy();
 		}

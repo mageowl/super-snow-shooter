@@ -13,6 +13,7 @@ export default class GameScene extends UpdatedScene {
 	};
 	players = {};
 	textureID = null;
+	particles = {};
 
 	init(data) {
 		this.textureID = data.textureID;
@@ -35,6 +36,8 @@ export default class GameScene extends UpdatedScene {
 				}
 			}
 		});
+
+		this.createParticles();
 
 		this.player = new Player(
 			this,
@@ -71,7 +74,7 @@ export default class GameScene extends UpdatedScene {
 		const gameData = sendPacket(this.player.frameData);
 		const pid = getPlayerID();
 
-		if (gameData !== ERROR.NOT_CONNECTED) {
+		if (gameData !== ERROR.NOT_CONNECTED && gameData != null) {
 			const removedPlayers = Object.keys(this.players);
 
 			Object.entries(gameData.players).forEach(([id, data]) => {
@@ -129,5 +132,19 @@ export default class GameScene extends UpdatedScene {
 			});
 
 		return map;
+	}
+
+	createParticles() {
+		this.particles.present = this.add.particles("present", 0, {
+			frame: {
+				frames: [0, 1],
+				cycle: true,
+				quantity: 1
+			},
+			gravityY: 200,
+			accelerationX: { ease: "Sine.easeIn", min: -500, max: 500 },
+			accelerationY: { ease: "Sine.easeIn", min: -500, max: 500 },
+			angle: { min: 0, max: 360, ease: "Linear" }
+		});
 	}
 }
