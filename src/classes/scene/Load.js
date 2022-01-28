@@ -83,6 +83,9 @@ export default class Load extends UpdatedScene {
 			}
 		);
 		this.load.image("bang", "sprites/particle/bang.png");
+		this.load.spritesheet("confetti", "sprites/particle/confetti.png", {
+			frameWidth: 8
+		});
 	}
 
 	create() {

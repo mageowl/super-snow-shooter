@@ -158,5 +158,19 @@ export default class GameScene extends UpdatedScene {
 			lifespan: 500,
 			maxParticles: 1
 		};
+		this.particles.confetti = this.add.particles("confetti");
+		this.particles.config.confetti = {
+			frame: {
+				frames: [0, 1, 2, 3],
+				cycle: true,
+				quantity: 2
+			},
+			gravityY: 200,
+			speed: 50,
+			angle: { min: 0, max: 360, ease: "Linear" },
+			lifespan: 1000,
+			rotate: { ease: "Linear", min: 0, max: 360 },
+			maxParticles: 8
+		};
 	}
 }
