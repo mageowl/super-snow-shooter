@@ -1,10 +1,9 @@
 import { ERROR } from "../errorCodes.mjs";
 
 // get server
-const server =
-	location.hostname === "mageowls.com"
-		? "https://super-snow-shooter.herokuapp.com"
-		: "http://localhost:3000";
+const server = location.hostname.endsWith("mageowls.com")
+	? "https://super-snow-shooter.herokuapp.com"
+	: "http://localhost:3000";
 
 let lastPacket = null;
 let socket = null;
