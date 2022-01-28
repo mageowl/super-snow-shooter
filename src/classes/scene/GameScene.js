@@ -13,7 +13,9 @@ export default class GameScene extends UpdatedScene {
 	};
 	players = {};
 	textureID = null;
-	particles = {};
+	particles = {
+		config: {}
+	};
 
 	init(data) {
 		this.textureID = data.textureID;
@@ -135,16 +137,26 @@ export default class GameScene extends UpdatedScene {
 	}
 
 	createParticles() {
-		this.particles.present = this.add.particles("present", 0, {
+		this.particles.present = this.add.particles("present-explosion");
+		this.particles.config.present = {
 			frame: {
 				frames: [0, 1],
 				cycle: true,
 				quantity: 1
 			},
-			gravityY: 200,
-			accelerationX: { ease: "Sine.easeIn", min: -500, max: 500 },
-			accelerationY: { ease: "Sine.easeIn", min: -500, max: 500 },
-			angle: { min: 0, max: 360, ease: "Linear" }
-		});
+			gravityY: 400,
+			speed: 100,
+			angle: { min: 0, max: 360, ease: "Linear" },
+			lifespan: 1000,
+			rotate: { ease: "Linear", min: 0, max: 360 },
+			maxParticles: 2
+		};
+		this.particles.bang = this.add.particles("bang");
+		this.particles.config.bang = {
+			alpha: { start: 1, end: 0, ease: "Sine.easeIn" },
+			angle: 0,
+			lifespan: 500,
+			maxParticles: 1
+		};
 	}
 }

@@ -24,7 +24,6 @@ export default class PowerUp {
 	apply() {
 		let prev = null;
 		this.data.forEach((current) => {
-			console.log(typeof prev, typeof current);
 			if (typeof prev === "string" && typeof current === "number") {
 				PowerUp.#modifiers[prev] = current;
 				console.log();

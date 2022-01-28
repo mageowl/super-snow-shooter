@@ -73,6 +73,16 @@ export default class Load extends UpdatedScene {
 			"powerUp.snow-speed",
 			"sprites/hud/power-ups/snow-speed.png"
 		);
+
+		// PARTICLES
+		this.load.spritesheet(
+			"present-explosion",
+			"sprites/particle/present-explosion.png",
+			{
+				frameWidth: 16
+			}
+		);
+		this.load.image("bang", "sprites/particle/bang.png");
 	}
 
 	create() {
