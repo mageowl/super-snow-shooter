@@ -5,13 +5,15 @@ import PowerUp from "../objects/PowerUp.js";
 const powerUps = [
 	new PowerUp("jump-boost", "JUMP_HEIGHT", 300),
 	new PowerUp("speed", "SPEED", 180, "CROUCH_SPEED", 100),
-	new PowerUp("snow-speed", "FIRE_VELOCITY", 400)
+	new PowerUp("snow-speed", "FIRE_VELOCITY", 400),
+	new PowerUp("santa", "SHOOT_PRESENTS")
 ];
 
 export default class HUD extends UpdatedScene {
 	killstreak = 0;
 	killBar = null;
 	activePowerUp = null;
+	poweredUp = false;
 
 	create() {
 		const gameCode = this.add
@@ -24,10 +26,11 @@ export default class HUD extends UpdatedScene {
 			)
 			.setOrigin(0.5);
 
-		this.killBar = this.add
-			.sprite(25, 25, "killstreak")
-			.setScale(3)
-			.setOrigin(0, 0.5);
+		if (currentGame != null)
+			this.killBar = this.add
+				.sprite(25, 25, "killstreak")
+				.setScale(3)
+				.setOrigin(0, 0.5);
 		this.activePowerUp = this.add
 			.sprite(25, 50, "powerUp.jumpBoost")
 			.setVisible(false)
@@ -39,12 +42,12 @@ export default class HUD extends UpdatedScene {
 			this.killBar.setFrame(0);
 			PowerUp.reset();
 			this.activePowerUp.setVisible(false);
+			this.poweredUp = false;
 		});
 		onKill(() => {
 			if (this.killstreak !== 3) {
 				this.killstreak++;
 				this.killBar.play(`streak.${this.killstreak}`);
-				console.log(this.killstreak);
 				if (this.killstreak === 3) {
 					this.killBar.once("animationcomplete", () => {
 						const powerUp =
@@ -53,9 +56,27 @@ export default class HUD extends UpdatedScene {
 						this.activePowerUp
 							.setTexture(`powerUp.${powerUp.name}`)
 							.setVisible(true);
+						this.poweredUp = true;
 					});
 				}
-				console.log(this.killstreak);
+			}
+		});
+
+		this.input.keyboard.on("keydown-P", () => {
+			if (currentGame == null) {
+				if (!this.poweredUp) {
+					// Solo game
+					const powerUp = powerUps[Math.floor(Math.random() * powerUps.length)];
+					powerUp.apply();
+					this.activePowerUp
+						.setTexture(`powerUp.${powerUp.name}`)
+						.setVisible(true);
+					this.poweredUp = true;
+				} else {
+					PowerUp.reset();
+					this.activePowerUp.setVisible(false);
+					this.poweredUp = false;
+				}
 			}
 		});
 	}

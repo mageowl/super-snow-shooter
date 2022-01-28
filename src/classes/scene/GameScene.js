@@ -13,6 +13,9 @@ export default class GameScene extends UpdatedScene {
 	};
 	players = {};
 	textureID = null;
+	particles = {
+		config: {}
+	};
 
 	init(data) {
 		this.textureID = data.textureID;
@@ -35,6 +38,8 @@ export default class GameScene extends UpdatedScene {
 				}
 			}
 		});
+
+		this.createParticles();
 
 		this.player = new Player(
 			this,
@@ -71,7 +76,7 @@ export default class GameScene extends UpdatedScene {
 		const gameData = sendPacket(this.player.frameData);
 		const pid = getPlayerID();
 
-		if (gameData !== ERROR.NOT_CONNECTED) {
+		if (gameData !== ERROR.NOT_CONNECTED && gameData != null) {
 			const removedPlayers = Object.keys(this.players);
 
 			Object.entries(gameData.players).forEach(([id, data]) => {
@@ -129,5 +134,43 @@ export default class GameScene extends UpdatedScene {
 			});
 
 		return map;
+	}
+
+	createParticles() {
+		this.particles.present = this.add.particles("present-explosion");
+		this.particles.config.present = {
+			frame: {
+				frames: [0, 1],
+				cycle: true,
+				quantity: 1
+			},
+			gravityY: 400,
+			speed: { min: 75, max: 125 },
+			angle: { min: 0, max: 360 },
+			lifespan: 1000,
+			rotate: { min: 0, max: 360 },
+			maxParticles: 2
+		};
+		this.particles.bang = this.add.particles("bang");
+		this.particles.config.bang = {
+			alpha: { start: 1, end: 0, ease: "Sine.easeIn" },
+			angle: 0,
+			lifespan: 500,
+			maxParticles: 1
+		};
+		this.particles.confetti = this.add.particles("confetti");
+		this.particles.config.confetti = {
+			frame: {
+				frames: [0, 1, 2, 3],
+				cycle: true,
+				quantity: 2
+			},
+			gravityY: 200,
+			speed: 50,
+			angle: { min: 0, max: 360, ease: "Linear" },
+			lifespan: 1000,
+			rotate: { ease: "Linear", min: 0, max: 360 },
+			maxParticles: 8
+		};
 	}
 }

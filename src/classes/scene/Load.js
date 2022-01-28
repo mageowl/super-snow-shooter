@@ -16,6 +16,7 @@ export default class Load extends UpdatedScene {
 		);
 
 		this.load.image("snowball", "sprites/player/snowball.png");
+		this.load.image("present", "sprites/player/present.png");
 
 		// TILEMAP
 		this.load.image("snow", "sprites/tileset/ground.png");
@@ -67,10 +68,24 @@ export default class Load extends UpdatedScene {
 			"sprites/hud/power-ups/jump-boost.png"
 		);
 		this.load.image("powerUp.speed", "sprites/hud/power-ups/speed.png");
+		this.load.image("powerUp.santa", "sprites/hud/power-ups/santa.png");
 		this.load.image(
 			"powerUp.snow-speed",
 			"sprites/hud/power-ups/snow-speed.png"
 		);
+
+		// PARTICLES
+		this.load.spritesheet(
+			"present-explosion",
+			"sprites/particle/present-explosion.png",
+			{
+				frameWidth: 16
+			}
+		);
+		this.load.image("bang", "sprites/particle/bang.png");
+		this.load.spritesheet("confetti", "sprites/particle/confetti.png", {
+			frameWidth: 8
+		});
 	}
 
 	create() {

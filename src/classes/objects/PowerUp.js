@@ -22,14 +22,18 @@ export default class PowerUp {
 	}
 
 	apply() {
-		this.data.reduce((prev, current) => {
+		let prev = null;
+		this.data.forEach((current) => {
 			if (typeof prev === "string" && typeof current === "number") {
 				PowerUp.#modifiers[prev] = current;
-				return null;
+				console.log();
 			} else if (typeof prev === "string" && typeof current === "string") {
 				PowerUp.#flags.push(prev);
-				return current;
-			} else return current;
+			} else if (typeof current === "string" && prev == null) {
+				PowerUp.#flags.push(current);
+			}
+
+			prev = current;
 		});
 	}
 }
