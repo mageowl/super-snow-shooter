@@ -161,7 +161,7 @@ export default class Player extends Phaser.GameObjects.Container {
 							)
 						);
 					}
-				} else if (this.recoil > 0) {
+				} else if (this.recoil > 0 && !input.E) {
 					this.recoil--;
 				}
 
@@ -185,7 +185,7 @@ export default class Player extends Phaser.GameObjects.Container {
 								this
 							)
 						);
-						this.recoil = 20;
+						this.recoil = 50;
 					}
 				}
 

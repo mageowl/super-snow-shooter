@@ -45,30 +45,24 @@ export default class Present extends Phaser.Physics.Arcade.Sprite {
 				}
 			});
 
-		const present = this.scene.particles.present.createEmitter({
+		this.scene.particles.present.createEmitter({
 			...this.scene.particles.config.present,
 			x: this.x,
 			y: this.y
 		});
 
-		const confetti = this.scene.particles.confetti.createEmitter({
+		this.scene.particles.confetti.createEmitter({
 			...this.scene.particles.config.confetti,
 			x: this.x,
 			y: this.y
 		});
 
-		const bang = this.scene.particles.bang.createEmitter({
+		this.scene.particles.bang.createEmitter({
 			...this.scene.particles.config.bang,
 			tint: 0xe43b44,
 			x: this.x,
 			y: this.y
 		});
-
-		setTimeout(() => {
-			present.destroy();
-			bang.destroy();
-			confetti.destroy();
-		}, 1010);
 
 		this.scene?.removeUpdate?.(this);
 		this.destroy();

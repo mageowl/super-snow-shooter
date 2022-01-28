@@ -145,10 +145,10 @@ export default class GameScene extends UpdatedScene {
 				quantity: 1
 			},
 			gravityY: 400,
-			speed: 100,
-			angle: { min: 0, max: 360, ease: "Linear" },
+			speed: { min: 75, max: 125 },
+			angle: { min: 0, max: 360 },
 			lifespan: 1000,
-			rotate: { ease: "Linear", min: 0, max: 360 },
+			rotate: { min: 0, max: 360 },
 			maxParticles: 2
 		};
 		this.particles.bang = this.add.particles("bang");
