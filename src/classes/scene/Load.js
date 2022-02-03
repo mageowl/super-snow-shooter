@@ -86,6 +86,9 @@ export default class Load extends UpdatedScene {
 		this.load.spritesheet("confetti", "sprites/particle/confetti.png", {
 			frameWidth: 8
 		});
+
+		// SFX
+		this.load.audio("bang", "sfx/bang.wav");
 	}
 
 	create() {

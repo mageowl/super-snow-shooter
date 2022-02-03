@@ -16,6 +16,7 @@ export default class GameScene extends UpdatedScene {
 	particles = {
 		config: {}
 	};
+	sfx = {};
 
 	init(data) {
 		this.textureID = data.textureID;
@@ -40,6 +41,7 @@ export default class GameScene extends UpdatedScene {
 		});
 
 		this.createParticles();
+		this.createSounds();
 
 		this.player = new Player(
 			this,
@@ -172,5 +174,9 @@ export default class GameScene extends UpdatedScene {
 			rotate: { ease: "Linear", min: 0, max: 360 },
 			maxParticles: 8
 		};
+	}
+
+	createSounds() {
+		this.sfx.bang = this.sound.add("bang");
 	}
 }
