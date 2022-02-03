@@ -1,7 +1,7 @@
 import { ERROR } from "../errorCodes.mjs";
 
 // get server
-const server = location.hostname.endsWith("mageowls.com")
+const server = location.hostname.endsWith("mageowlstudios.com")
 	? "https://super-snow-shooter.herokuapp.com"
 	: "http://localhost:3000";
 
