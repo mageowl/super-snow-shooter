@@ -11,7 +11,7 @@ const httpServer = createServer(app);
 /** @type {Server} */
 const io = new Server(httpServer, {
 	cors: {
-		origin: debug ? "http://localhost:5500" : "https://mageowls.com",
+		origin: debug ? "http://localhost:5500" : "https://mageowlstudios.com",
 		methods: ["GET", "POST"]
 	}
 });
