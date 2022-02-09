@@ -1,6 +1,7 @@
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 import { currentGame, onDeath, onKill } from "../../io.js";
 import PowerUp from "../objects/PowerUp.js";
+import hacks from "../../hacks.js";
 
 const powerUps = [
 	new PowerUp("jump-boost", "JUMP_HEIGHT", 300),
@@ -63,7 +64,7 @@ export default class HUD extends UpdatedScene {
 		});
 
 		this.input.keyboard.on("keydown-P", () => {
-			if (currentGame == null) {
+			if (currentGame == null || hacks()) {
 				if (!this.poweredUp) {
 					// Solo game
 					const powerUp = powerUps[Math.floor(Math.random() * powerUps.length)];
