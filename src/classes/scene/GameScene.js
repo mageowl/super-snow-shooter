@@ -25,7 +25,8 @@ export default class GameScene extends UpdatedScene {
 	create() {
 		this.background = this.add
 			.image(480, 264, "background-sky")
-			.setScrollFactor(0)
+			.setScrollFactor(0.3)
+			.setScale(2)
 			.setTint(0xbbbbbb)
 			.setDepth(-2);
 
