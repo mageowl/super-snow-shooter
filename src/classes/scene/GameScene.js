@@ -26,7 +26,7 @@ export default class GameScene extends UpdatedScene {
 		this.background = this.add
 			.image(480, 264, "background-sky")
 			.setScrollFactor(0)
-			.setTint(0xaaaaaa)
+			.setTint(0xbbbbbb)
 			.setDepth(-2);
 
 		const map = this.createMap();
