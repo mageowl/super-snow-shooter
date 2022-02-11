@@ -1,6 +1,7 @@
 import { ERROR } from "../../../errorCodes.mjs";
 import sendPacket, { getPlayerID } from "../../io.js";
 import Player from "../objects/Player.js";
+import animParticles from "../other/AnimatedParticle.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 
 export default class GameScene extends UpdatedScene {
@@ -154,6 +155,7 @@ export default class GameScene extends UpdatedScene {
 			rotate: { min: 0, max: 360 },
 			maxParticles: 2
 		};
+
 		this.particles.bang = this.add.particles("bang");
 		this.particles.config.bang = {
 			alpha: { start: 1, end: 0, ease: "Sine.easeIn" },
@@ -161,6 +163,7 @@ export default class GameScene extends UpdatedScene {
 			lifespan: 500,
 			maxParticles: 1
 		};
+
 		this.particles.confetti = this.add.particles("confetti");
 		this.particles.config.confetti = {
 			frame: {
@@ -174,6 +177,14 @@ export default class GameScene extends UpdatedScene {
 			lifespan: 1000,
 			rotate: { ease: "Linear", min: 0, max: 360 },
 			maxParticles: 8
+		};
+
+		this.particles.jump = this.add.particles("jump-effect");
+		this.particles.config.jump = {
+			frame: [0, 1, 2, 3, 4, 5, 6, 7],
+			lifespan: 350,
+			maxParticles: 1,
+			particleClass: animParticles(this.anims.get("jump-effect"), 7)
 		};
 	}
 

@@ -83,6 +83,9 @@ export default class Load extends UpdatedScene {
 			}
 		);
 		this.load.image("bang", "sprites/particle/bang.png");
+		this.load.spritesheet("jump-effect", "sprites/particle/jump.png", {
+			frameWidth: 16
+		});
 		this.load.spritesheet("confetti", "sprites/particle/confetti.png", {
 			frameWidth: 8
 		});
@@ -101,5 +104,10 @@ export default class Load extends UpdatedScene {
 		this.anims.createFromAseprite("player1");
 		this.anims.createFromAseprite("player2");
 		this.anims.createFromAseprite("killstreak");
+		this.anims.create({
+			frames: "jump-effect",
+			key: "jump-effect",
+			frameRate: 20
+		});
 	}
 }

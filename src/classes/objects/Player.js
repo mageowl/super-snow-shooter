@@ -121,6 +121,11 @@ export default class Player extends Phaser.GameObjects.Container {
 
 				if (this.body.onFloor() && input.W) {
 					this.body.setVelocityY(-PowerUp.getStat("JUMP_HEIGHT"));
+					this.scene.particles.jump.createEmitter({
+						...this.scene.particles.config.jump,
+						x: this.x,
+						y: this.y
+					});
 				}
 
 				this.sliding =
@@ -137,6 +142,12 @@ export default class Player extends Phaser.GameObjects.Container {
 							-PowerUp.getStat("JUMP_HEIGHT")
 						);
 						this.launch = 20;
+						this.scene.particles.jump.createEmitter({
+							...this.scene.particles.config.jump,
+							x: this.x + direction * -3,
+							y: this.y,
+							rotate: direction > 0 ? 270 : 90
+						});
 					}
 				}
 
