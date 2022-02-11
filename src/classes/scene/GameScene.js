@@ -181,7 +181,7 @@ export default class GameScene extends UpdatedScene {
 
 		this.particles.jump = this.add.particles("jump-effect");
 		this.particles.config.jump = {
-			frame: [0, 1, 2, 3, 4, 5, 6, 7],
+			frame: 0,
 			lifespan: 350,
 			maxParticles: 1,
 			particleClass: animParticles(this.anims.get("jump-effect"), 7)
