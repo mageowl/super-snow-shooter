@@ -29,7 +29,7 @@ export default class Music extends UpdatedScene {
 
 	pause() {
 		this.paused = !this.paused;
-		if (this.paused) this.tracks[this.currentlyPlaying].stop();
-		else this.tracks[this.currentlyPlaying].play({ loop: true, volume: 0.5 });
+		if (this.paused) this.tracks[this.currentlyPlaying].pause();
+		else this.tracks[this.currentlyPlaying].resume();
 	}
 }

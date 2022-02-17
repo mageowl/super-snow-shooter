@@ -66,6 +66,7 @@ export default class Load extends UpdatedScene {
 			"browser-bar.close",
 			"sprites/menu/everest/browser-close.png"
 		);
+		this.load.image("vignette", "sprites/hud/vignette.png");
 
 		// POWER-UPS
 		this.load.image(

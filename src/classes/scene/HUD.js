@@ -17,6 +17,8 @@ export default class HUD extends UpdatedScene {
 	poweredUp = false;
 
 	create() {
+		this.add.image(0, 0, "vignette").setDepth(-1).setOrigin(0);
+
 		const gameCode = this.add
 			.bitmapText(
 				480,
