@@ -1,5 +1,6 @@
 import { isConnected } from "../../../io.js";
 import Menu, { BUTTON } from "../../template/scenes/Menu.js";
+import Music from "../Music.js";
 
 export default class MainMenu extends Menu {
 	frame = 0;
@@ -33,10 +34,29 @@ export default class MainMenu extends Menu {
 			"pointerdown",
 			() => this.scene.start("JoinMenu")
 		);
-		this.addButton("JOIN RANDOM GAME", 1, buttonContainer);
-		this.addButton("HOST GAME", 2, buttonContainer).on("pointerdown", () => {
+		this.addButton("EVEREST", 2, buttonContainer, BUTTON.DISABLED);
+		// .on(
+		// 	"pointerdown",
+		// 	() => {
+		// 		this.scene.start("EverestMenu")
+		// 	}
+		// );
+		this.addButton("HOST GAME", 1, buttonContainer).on("pointerdown", () => {
 			if (isConnected()) this.scene.start("HostMenu");
 		});
+
+		const disc = this.add
+			.image(10, 480, "disc.bananax")
+			.setOrigin(0)
+			.setScale(3)
+			.setInteractive()
+			.on("pointerover", () => {
+				disc.setTexture("disc.bananax.open");
+			})
+			.on("pointerout", () => {
+				disc.setTexture("disc.bananax");
+			});
+		this.add.bitmapText(64, 480, "zepto-name-tag", "Music by Bananax", 24);
 
 		this.input.setDefaultCursor(
 			"url(assets/sprites/menu/pointer.png), default"

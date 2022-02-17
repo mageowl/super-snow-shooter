@@ -61,6 +61,11 @@ export default class Load extends UpdatedScene {
 			"sprites/hud/killstreak.png",
 			"sprites/hud/killstreak.json"
 		);
+		this.load.image("browser-bar", "sprites/menu/everest/browser.png");
+		this.load.image(
+			"browser-bar.close",
+			"sprites/menu/everest/browser-close.png"
+		);
 
 		// POWER-UPS
 		this.load.image(
@@ -91,13 +96,21 @@ export default class Load extends UpdatedScene {
 		});
 
 		// SFX
-		this.load.audio("bang", "sfx/bang.wav");
+		this.load.audio("bang", "sound/bang.wav");
+
+		// MUSIC
+		this.load.audio("music.bananax.1", "sound/music/bananax-track-1.wav");
+
+		// DISCS
+		this.load.image("disc.bananax", "sprites/menu/bananax-disc.png");
+		this.load.image("disc.bananax.open", "sprites/menu/bananax-disc-open.png");
 	}
 
 	create() {
 		this.createAnimations();
 
 		this.scene.start("MainMenu");
+		this.scene.launch("Music");
 	}
 
 	createAnimations() {

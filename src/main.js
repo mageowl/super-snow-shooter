@@ -1,9 +1,11 @@
 import GameScene from "./classes/scene/GameScene.js";
 import HUD from "./classes/scene/HUD.js";
 import Load from "./classes/scene/Load.js";
+import EverestMenu from "./classes/scene/menu/EverestMenu.js";
 import HostMenu from "./classes/scene/menu/HostMenu.js";
 import JoinMenu from "./classes/scene/menu/JoinMenu.js";
 import MainMenu from "./classes/scene/menu/MainMenu.js";
+import Music from "./classes/scene/Music.js";
 import { connect } from "./io.js";
 
 const game = new Phaser.Game({
@@ -28,7 +30,16 @@ const game = new Phaser.Game({
 	loader: {
 		baseURL: "assets"
 	},
-	scene: [Load, MainMenu, JoinMenu, HostMenu, GameScene, HUD]
+	scene: [
+		Load,
+		MainMenu,
+		JoinMenu,
+		HostMenu,
+		EverestMenu,
+		GameScene,
+		HUD,
+		Music
+	]
 });
 
 connect();
