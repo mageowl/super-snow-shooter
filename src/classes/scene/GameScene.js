@@ -114,9 +114,9 @@ export default class GameScene extends UpdatedScene {
 
 	createMap() {
 		const map = this.add.tilemap("map");
-		map.addTilesetImage("Snow", "snow");
-		map.addTilesetImage("Ice", "ice");
-		map.addTilesetImage("Background", "background-tileset");
+		map.addTilesetImage("Snow", "snow", 16, 16, 1, 2);
+		map.addTilesetImage("Ice", "ice", 16, 16, 1, 2);
+		map.addTilesetImage("Background", "background-tileset", 16, 16, 1, 2);
 		map.addTilesetImage("Bridge", "bridge");
 		map.addTilesetImage("Snowfort", "snowfort");
 

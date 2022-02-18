@@ -19,9 +19,12 @@ export default class Load extends UpdatedScene {
 		this.load.image("present", "sprites/player/present.png");
 
 		// TILEMAP
-		this.load.image("snow", "sprites/tileset/ground.png");
-		this.load.image("ice", "sprites/tileset/ice.png");
-		this.load.image("background-tileset", "sprites/tileset/background.png");
+		this.load.image("snow", "sprites/tileset/extruded/ground.png");
+		this.load.image("ice", "sprites/tileset/extruded/ice.png");
+		this.load.image(
+			"background-tileset",
+			"sprites/tileset/extruded/background.png"
+		);
 		this.load.image("bridge", "sprites/tileset/bridge.png");
 		this.load.image("snowfort", "sprites/tileset/snowfort.png");
 
