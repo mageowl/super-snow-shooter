@@ -127,9 +127,12 @@ export default class GameScene extends UpdatedScene {
 			.createLayer("ice", "Ice")
 			.setCollisionByProperty({ collide: true });
 		this.tilemap.bridge = map.createLayer("bridge", "Bridge");
+		this.tilemap.snowDrift = map
+			.createLayer("snow-drift", "Background")
+			.setDepth(-1);
 		this.tilemap.background = map
 			.createLayer("background", ["Snowfort", "Background"])
-			.setDepth(-1);
+			.setDepth(-2);
 
 		this.tilemap.bridge
 			.filterTiles((t) => t.index !== -1)

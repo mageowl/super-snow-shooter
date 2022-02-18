@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
+    "activeFile": "",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
     ],
@@ -652,10 +652,10 @@
         },
         "/Users/owen/Documents/Projects/tiled-engine/test.tmx": {
             "scale": 5.5,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 79.81818181818184,
-                "y": 93
+                "x": 80,
+                "y": 91.9090909090909
             }
         },
         "/Users/owen/Google Drive/seattleowl.com/VSC Projects/boxed-in/tilemaps/ch1.json": {
@@ -1001,16 +1001,13 @@
     "map.tileWidth": 16,
     "map.width": 10,
     "openFiles": [
-        "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
-        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/Art.tsx",
-        "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/behavior.tsx"
     ],
     "project": "super-snow-shooter.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
         "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/behavior.tsx",
         "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/Art.tsx",
-        "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
         "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/test.tmx",
         "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/collision.tsx",
         "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/default-tilesets/Art.tsx",

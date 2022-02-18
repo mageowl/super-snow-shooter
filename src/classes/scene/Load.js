@@ -101,6 +101,7 @@ export default class Load extends UpdatedScene {
 
 		// MUSIC
 		this.load.audio("music.bananax.1", "sound/music/bananax-track-1.wav");
+		this.load.audio("music.bananax.2", "sound/music/bananax-track-2.wav");
 
 		// DISCS
 		this.load.image("disc.bananax", "sprites/menu/bananax-disc.png");

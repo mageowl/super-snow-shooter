@@ -7,7 +7,10 @@ export default class Music extends UpdatedScene {
 	paused = false;
 
 	create() {
-		this.tracks = [this.sound.add("music.bananax.1")];
+		this.tracks = [
+			this.sound.add("music.bananax.1"),
+			this.sound.add("music.bananax.2")
+		];
 		this.tracks[this.currentlyPlaying].play({ loop: true, volume: 0.5 });
 
 		const disc = this.add
@@ -22,7 +25,7 @@ export default class Music extends UpdatedScene {
 				disc.setTexture("disc.bananax");
 			})
 			.on("pointerdown", () => {
-				// this.next();
+				this.next();
 			});
 		this.add.bitmapText(64, 480, "zepto-name-tag", "Music by Bananax", 24);
 		this.add.bitmapText(64, 504, "zepto-small", "M to pause", 16);
