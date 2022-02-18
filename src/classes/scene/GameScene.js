@@ -67,7 +67,7 @@ export default class GameScene extends UpdatedScene {
 		const bounds = [16, 16, map.widthInPixels - 32, map.heightInPixels - 32];
 		this.cameras.main
 			.setZoom(3)
-			.startFollow(this.player)
+			.startFollow(this.player, false, 0.1, 0.1)
 			.setBounds(...bounds);
 		this.physics.world.setBounds(...bounds);
 
