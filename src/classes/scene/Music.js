@@ -28,9 +28,11 @@ export default class Music extends UpdatedScene {
 				this.next();
 			});
 		this.add.bitmapText(64, 480, "zepto-name-tag", "Music by Bananax", 24);
-		this.add.bitmapText(64, 504, "zepto-small", "M to pause", 16);
+		this.add.bitmapText(64, 504, "zepto-small", "ALT to pause", 16);
 
-		this.input.keyboard.on("keydown-M", () => this.pause());
+		this.input.keyboard.on("keydown-ALT", () => {
+			this.pause();
+		});
 	}
 
 	pause() {
