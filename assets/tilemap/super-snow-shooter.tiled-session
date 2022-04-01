@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "icy_peaks.tmx",
     "automapping.whileDrawing": false,
     "expandedProjectPaths": [
     ],
@@ -808,8 +808,8 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 489.99999999999994,
-                "y": 325
+                "x": 133.99999999999997,
+                "y": 201
             }
         },
         "rules.tmx": {
@@ -1001,17 +1001,18 @@
     "map.tileWidth": 16,
     "map.width": 10,
     "openFiles": [
+        "icy_peaks.tmx"
     ],
     "project": "super-snow-shooter.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "icy_peaks.tmx",
         "/Users/owen/Documents/Projects/tiled-engine/test.tmx",
         "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/behavior.tsx",
         "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/Art.tsx",
         "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/test.tmx",
         "/Users/owen/Documents/Projects/tiled-engine/default-tilesets/collision.tsx",
         "/Volumes/GoogleDrive/My Drive/seattleowl.com/VSC Projects/tiled-engine/default-tilesets/Art.tsx",
-        "icy_peaks.tmx",
         "rules/ice/9splice.tmx",
         "rules/bridge.tmx",
         "tilesets/background.tsx",

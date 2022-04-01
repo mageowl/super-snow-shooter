@@ -11,6 +11,7 @@ let joinCallbacks = [];
 let hostCallbacks = [];
 let deathCallbacks = [];
 let hitCallbacks = [];
+let winCallbacks = [];
 
 export let currentGame = null;
 
@@ -79,6 +80,12 @@ export async function connect() {
 		// open("about:blank", "_self").close();
 		deathCallbacks.forEach((callback) => callback());
 	});
+
+	socket.on("player-win", ({ gameID, playerID }) => {
+		if (gameID === currentGame) {
+			winCallbacks.forEach((callback) => callback(playerID));
+		}
+	});
 }
 
 export function isConnected() {
@@ -124,4 +131,8 @@ export function onDeath(callback) {
 
 export function onKill(callback) {
 	hitCallbacks.push(callback);
+}
+
+export function onWin(callback) {
+	winCallbacks.push(callback);
 }

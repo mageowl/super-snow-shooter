@@ -58,6 +58,7 @@ export default class Load extends UpdatedScene {
 		this.load.image("button", "sprites/menu/button.png");
 		this.load.image("button-selector", "sprites/menu/selector.png");
 		this.load.image("title", "sprites/menu/title.png");
+		this.load.image("title.rick-roll", "sprites/menu/rick-rolled-title.png");
 		this.load.image("server-down", "sprites/menu/server-down.png");
 		this.load.aseprite(
 			"killstreak",
@@ -69,7 +70,10 @@ export default class Load extends UpdatedScene {
 			"browser-bar.close",
 			"sprites/menu/everest/browser-close.png"
 		);
+		this.load.image("end_of_game.victory", "sprites/menu/victory.png");
+		this.load.image("end_of_game.defeat", "sprites/menu/defeat.png");
 		this.load.image("vignette", "sprites/hud/vignette.png");
+		this.load.image("crown", "sprites/hud/crown.png");
 
 		// POWER-UPS
 		this.load.image(
@@ -109,6 +113,9 @@ export default class Load extends UpdatedScene {
 		// DISCS
 		this.load.image("disc.bananax", "sprites/menu/bananax-disc.png");
 		this.load.image("disc.bananax.open", "sprites/menu/bananax-disc-open.png");
+
+		// APRIL FOOLS
+		this.load.video("music.rick-roll", "sound/rick-roll.mp4");
 	}
 
 	create() {

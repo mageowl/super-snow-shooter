@@ -40,7 +40,8 @@ io.on("connection", (socket) => {
 				y: 0,
 				snowballs: [],
 				anim: "idle",
-				textureID: 0
+				textureID: 0,
+				killstreak: 0
 			};
 
 			currentGame = id;
@@ -62,7 +63,8 @@ io.on("connection", (socket) => {
 					name,
 					x: 0,
 					y: 0,
-					snowballs: []
+					snowballs: [],
+					killstreak: 0
 				}
 			},
 			inLobby: true,
@@ -91,6 +93,14 @@ io.on("connection", (socket) => {
 		) {
 			const dead = io.sockets.sockets.get(id);
 			dead.emit("die");
+			games[currentGame].players[socket.id].killstreak++;
+			games[currentGame].players[id].killstreak = 0;
+			console.log(games[currentGame].players[socket.id].killstreak);
+
+			if (games[currentGame].players[socket.id].killstreak >= 5) {
+				io.emit("player-win", { gameID: currentGame, playerID: socket.id });
+				console.log("bruh");
+			}
 		}
 	});
 

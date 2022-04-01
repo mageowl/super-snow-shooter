@@ -1,8 +1,9 @@
 import { ERROR } from "../../../errorCodes.mjs";
-import sendPacket, { getPlayerID } from "../../io.js";
+import sendPacket, { getPlayerID, onWin } from "../../io.js";
 import Player from "../objects/Player.js";
 import animParticles from "../other/AnimatedParticle.js";
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
+import HUD from "./HUD.js";
 
 export default class GameScene extends UpdatedScene {
 	tilemap = {
@@ -18,12 +19,15 @@ export default class GameScene extends UpdatedScene {
 		config: {}
 	};
 	sfx = {};
+	winMode = false;
 
 	init(data) {
 		this.textureID = data.textureID;
 	}
 
 	create() {
+		this.winMode = false;
+
 		this.background = this.add
 			.image(480, 264, "background-sky")
 			.setScrollFactor(0.3)
@@ -72,43 +76,65 @@ export default class GameScene extends UpdatedScene {
 		this.physics.world.setBounds(...bounds);
 
 		this.scene.launch("HUD");
+
+		this.input.keyboard.on("keydown-ESC", () => {
+			this.scene.start("MainMenu");
+			this.scene.stop("HUD");
+		});
+
+		onWin((playerID) => {
+			this.winMode = true;
+			const won = playerID === getPlayerID();
+			const winner = won ? this.player : this.players[playerID];
+			this.player.setVisible(false).body.setEnable(false);
+			if (!won) {
+				this.cameras.main.startFollow(this.player, false, 0.1, 0.1);
+			}
+			setTimeout(() => this.player.setPosition(winner.x, winner.y), 10);
+			Object.values(this.players).forEach((p) => p.setVisible(false));
+			winner.setVisible(true);
+			this.add.image(winner.x, winner.y - (won ? 20 : 28), "crown");
+			this.player.cancelRespawn();
+		});
 	}
 
 	update() {
-		super.update();
+		if (!this.winMode) {
+			super.update();
 
-		const gameData = sendPacket(this.player.frameData);
-		const pid = getPlayerID();
+			const gameData = sendPacket(this.player.frameData);
+			const pid = getPlayerID();
 
-		if (gameData !== ERROR.NOT_CONNECTED && gameData != null) {
-			const removedPlayers = Object.keys(this.players);
+			if (gameData !== ERROR.NOT_CONNECTED && gameData != null) {
+				const removedPlayers = Object.keys(this.players);
 
-			Object.entries(gameData.players).forEach(([id, data]) => {
-				if (id !== pid) {
-					if (this.players[id] == null) {
-						this.players[id] = new Player(
-							this,
-							data.x,
-							data.y,
-							data.textureID,
-							data.name,
-							false
-						);
-					} else {
-						removedPlayers.splice(removedPlayers.indexOf(id), 1);
+				Object.entries(gameData.players).forEach(([id, data]) => {
+					if (id !== pid) {
+						if (this.players[id] == null) {
+							this.players[id] = new Player(
+								this,
+								data.x,
+								data.y,
+								data.textureID,
+								data.name,
+								false
+							);
+						} else {
+							removedPlayers.splice(removedPlayers.indexOf(id), 1);
+						}
+
+						this.players[id].frameData = data;
 					}
+				});
 
-					this.players[id].frameData = data;
-				}
-			});
-
-			removedPlayers.forEach((id) => {
-				if (this.players[id] != null) {
-					this.players[id].destroy();
-					this.removeUpdate(this.players[id]);
-					delete this.players[id];
-				}
-			});
+				removedPlayers.forEach((id) => {
+					if (this.players[id] != null) {
+						this.players[id].destroy();
+						this.removeUpdate(this.players[id]);
+						delete this.players[id];
+					}
+				});
+			}
 		}
 	}
 

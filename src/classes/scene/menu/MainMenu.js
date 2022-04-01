@@ -23,6 +23,11 @@ export default class MainMenu extends Menu {
 
 		this.add.image(0, 0, "background-main").setOrigin(0).setDepth(-1);
 
+		const rickRoll = this.add
+			.video(480, 264, "music.rick-roll")
+			.setVisible(false)
+			.setDepth(-1);
+
 		if (!isConnected())
 			this.serverWarning = this.add
 				.image(281, 475, "server-down")
@@ -34,13 +39,14 @@ export default class MainMenu extends Menu {
 			"pointerdown",
 			() => this.scene.start("JoinMenu")
 		);
-		this.addButton("EVEREST", 2, buttonContainer, BUTTON.DISABLED);
-		// .on(
-		// 	"pointerdown",
-		// 	() => {
-		// 		this.scene.start("EverestMenu")
-		// 	}
-		// );
+		this.addButton("EVEREST", 2, buttonContainer).on("pointerdown", () => {
+			// this.scene.start("EverestMenu")
+			rickRoll.setVisible(true).play().setPaused(false);
+			this.title.iterate((sprite) => {
+				sprite.setTexture("title.rick-roll");
+			});
+			Music.pause();
+		});
 		this.addButton("HOST GAME", 1, buttonContainer).on("pointerdown", () => {
 			if (isConnected()) this.scene.start("HostMenu");
 		});

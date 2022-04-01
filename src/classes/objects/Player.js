@@ -29,6 +29,7 @@ export default class Player extends Phaser.GameObjects.Container {
 	spawns = [];
 	hit = false;
 	collider = null;
+	respawn = null;
 
 	/** @type {Phaser.GameObjects.Sprite} */
 	sprite = null;
@@ -79,7 +80,7 @@ export default class Player extends Phaser.GameObjects.Container {
 				this.body.setVelocity(0, -Player.JUMP_HEIGHT / 2);
 				this.body.setCollideWorldBounds(false);
 				this.scene.cameras.main.stopFollow();
-				setTimeout(() => {
+				this.respawn = setTimeout(() => {
 					this.collider.active = true;
 					this.hit = false;
 					this.body.setVelocity(0);
@@ -297,5 +298,9 @@ export default class Player extends Phaser.GameObjects.Container {
 
 	setCollider(collider) {
 		this.collider = collider;
+	}
+
+	cancelRespawn() {
+		if (this.respawn) clearTimeout(this.respawn);
 	}
 }

@@ -1,12 +1,19 @@
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
 
 export default class Music extends UpdatedScene {
+	static #instance = null;
+	static pause() {
+		this.#instance.pause();
+	}
+
 	/** @type {Phaser.Sound.BaseSound[]} */
 	tracks = [];
 	currentlyPlaying = 0;
 	paused = false;
 
 	create() {
+		Music.#instance = this;
+
 		this.tracks = [
 			this.sound.add("music.bananax.1"),
 			this.sound.add("music.bananax.2")

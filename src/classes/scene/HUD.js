@@ -1,5 +1,5 @@
 import UpdatedScene from "../template/scenes/UpdatedScene.js";
-import { currentGame, onDeath, onKill } from "../../io.js";
+import { currentGame, getPlayerID, onDeath, onKill, onWin } from "../../io.js";
 import PowerUp from "../objects/PowerUp.js";
 import hacks from "../../hacks.js";
 
@@ -7,7 +7,8 @@ const powerUps = [
 	new PowerUp("jump-boost", "JUMP_HEIGHT", 300),
 	new PowerUp("speed", "SPEED", 180, "CROUCH_SPEED", 100),
 	new PowerUp("snow-speed", "FIRE_VELOCITY", 400),
-	new PowerUp("santa", "SHOOT_PRESENTS")
+	new PowerUp("santa", "SHOOT_PRESENTS"),
+	new PowerUp("teleport", "TELEPORT")
 ];
 
 export default class HUD extends UpdatedScene {
@@ -15,11 +16,17 @@ export default class HUD extends UpdatedScene {
 	killBar = null;
 	activePowerUp = null;
 	poweredUp = false;
+	gameCode = null;
+	vignette = null;
 
 	create() {
-		this.add.image(0, 0, "vignette").setDepth(-1).setOrigin(0);
+		this.vignette = this.add
+			.image(0, 0, "vignette")
+			.setDepth(-1)
+			.setOrigin(0)
+			.setAlpha(0.75);
 
-		const gameCode = this.add
+		this.gameCode = this.add
 			.bitmapText(
 				480,
 				50,
@@ -63,6 +70,30 @@ export default class HUD extends UpdatedScene {
 					});
 				}
 			}
+		});
+		onWin((playerID) => {
+			const won = playerID === getPlayerID();
+
+			this.gameCode.setVisible(false);
+			this.killBar.setVisible(false);
+			this.activePowerUp.setVisible(false);
+			const title = this.add
+				.image(480, 50, won ? "end_of_game.victory" : "end_of_game.defeat")
+				.setScale(0)
+				.setAlpha(0);
+			this.tweens.add({
+				targets: title,
+				props: { scale: 3, alpha: 1 },
+				duration: 500,
+				ease: "Back",
+				easeParams: [1]
+			});
+			this.tweens.add({
+				targets: this.vignette,
+				props: { alpha: 0.8 },
+				duration: 500,
+				ease: "Sine.easeOut"
+			});
 		});
 
 		this.input.keyboard.on("keydown-P", () => {
