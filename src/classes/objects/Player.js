@@ -65,7 +65,9 @@ export default class Player extends Phaser.GameObjects.Container {
 			scene.physics.add.existing(this);
 
 			this.isLocal = true;
-			this.keys = this.scene.input.keyboard.addKeys("W,A,S,D,SPACE,SHIFT,E");
+			this.keys = this.scene.input.keyboard.addKeys(
+				"W,A,S,D,UP,DOWN,LEFT,RIGHT,SPACE,SHIFT,E"
+			);
 			Player.local = this;
 			this.spawns = spawns;
 
@@ -103,6 +105,11 @@ export default class Player extends Phaser.GameObjects.Container {
 				const input = Object.fromEntries(
 					Object.entries(this.keys).map(([name, { isDown }]) => [name, isDown])
 				);
+				input.A = input.A || input.LEFT;
+				input.S = input.S || input.DOWN;
+				input.D = input.D || input.RIGHT;
+				input.W = input.W || input.UP;
+
 				const direction = input.D - input.A;
 
 				// If invincible and a key has been pressed

@@ -9,6 +9,8 @@ export default class JoinMenu extends Menu {
 	inputText = null;
 	/** @type {Phaser.GameObjects.BitmapText} */
 	inputTitle = null;
+	/** @type {Phaser.GameObjects.BitmapText} */
+	inputSubtitle = null;
 	code = "";
 	name = "";
 	canType = true;
@@ -32,6 +34,7 @@ export default class JoinMenu extends Menu {
 				) {
 					this.canType = false;
 					this.inputTitle.setText("Connecting...");
+					this.inputSubtitle.setVisible(false);
 					joinGame(this.code)
 						.then(() => {
 							// this.scene.start("GameScene");
@@ -69,6 +72,7 @@ export default class JoinMenu extends Menu {
 					this.state = "character-select";
 					this.inputTitle.setText("Select a skin:");
 					this.inputText.setVisible(false);
+					this.inputSubtitle.setVisible(false);
 					this.nxtButton.parentContainer.setVisible(false);
 					this.characterSelect.setVisible(true);
 				} else if (this.state === "name" && this.name.length > 0) {
@@ -76,6 +80,7 @@ export default class JoinMenu extends Menu {
 					this.state = "character-select";
 					this.inputTitle.setText("Select a skin:");
 					this.inputText.setVisible(false);
+					this.inputSubtitle.setVisible(false);
 					this.nxtButton.parentContainer.setVisible(false);
 					this.characterSelect.setVisible(true);
 				}
@@ -96,6 +101,17 @@ export default class JoinMenu extends Menu {
 
 		this.inputTitle = this.add
 			.bitmapText(380, 200, "zepto-small", "Enter game ID:", 16)
+			.setOrigin(0, 1)
+			.setDropShadow(1, 1, 0x222222);
+
+		this.inputSubtitle = this.add
+			.bitmapText(
+				380,
+				300,
+				"zepto-small",
+				"or enter SOLO for singleplayer.",
+				16
+			)
 			.setOrigin(0, 1)
 			.setDropShadow(1, 1, 0x222222);
 

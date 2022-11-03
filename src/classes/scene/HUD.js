@@ -7,8 +7,8 @@ const powerUps = [
 	new PowerUp("jump-boost", "JUMP_HEIGHT", 300),
 	new PowerUp("speed", "SPEED", 180, "CROUCH_SPEED", 100),
 	new PowerUp("snow-speed", "FIRE_VELOCITY", 400),
-	new PowerUp("santa", "SHOOT_PRESENTS"),
-	new PowerUp("teleport", "TELEPORT")
+	new PowerUp("santa", "SHOOT_PRESENTS")
+	// new PowerUp("teleport", "TELEPORT")
 ];
 
 export default class HUD extends UpdatedScene {

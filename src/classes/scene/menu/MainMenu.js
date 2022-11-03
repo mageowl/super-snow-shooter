@@ -39,14 +39,14 @@ export default class MainMenu extends Menu {
 			"pointerdown",
 			() => this.scene.start("JoinMenu")
 		);
-		this.addButton("EVEREST", 2, buttonContainer).on("pointerdown", () => {
-			// this.scene.start("EverestMenu")
-			rickRoll.setVisible(true).play().setPaused(false);
-			this.title.iterate((sprite) => {
-				sprite.setTexture("title.rick-roll");
-			});
-			Music.pause();
-		});
+		// this.addButton("EVEREST", 2, buttonContainer).on("pointerdown", () => {
+		// 	// this.scene.start("EverestMenu")
+		// 	rickRoll.setVisible(true).play().setPaused(false);
+		// 	this.title.iterate((sprite) => {
+		// 		sprite.setTexture("title.rick-roll");
+		// 	});
+		// 	Music.pause();
+		// });
 		this.addButton("HOST GAME", 1, buttonContainer).on("pointerdown", () => {
 			if (isConnected()) this.scene.start("HostMenu");
 		});
